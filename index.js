@@ -1,0 +1,8 @@
+module.exports = {
+  init: require('./lib/init'),
+  add: require('./lib/add'),
+  commit: require('./lib/commit'),
+  addRemote: require('./lib/addRemote'),
+  push: require('./lib/push'),
+  pull: require('./lib/pull')
+};

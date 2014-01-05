@@ -1,0 +1,39 @@
+{
+  "name": "gulp-git",
+  "description": "Git plugin for Gulp (gulpjs.com)",
+  "version": "0.0.1",
+  "homepage": "http://github.com/stevelacy/gulp-git",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/stevelacy/gulp-git.git"
+  },
+  "author": "Steve Lacy me@slacy.me (slacy.me)",
+  "main": "./index.js",
+  "dependencies": {
+    "gulp-util": "~2.2.5",
+    "map-stream": "~0.0.4"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "keywords": [
+    "gulp",
+    "git",
+    "gulpgit",
+    "gulpplugin",
+    "gulp-plugin"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/stevelacy/gulp-git/raw/master/LICENSE"
+    }
+  ]
+}
