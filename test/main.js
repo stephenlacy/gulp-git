@@ -5,6 +5,13 @@ var gutil = require('gulp-util');
 var git = require('../');
 
 require('mocha');
+fs.exists('test/-.git', function(exists){
+  if(exists === true){
+    fs.rename('test/-.git', 'test/.git', function(err){
+      fs.unlinkSync('test/-.git');
+    });
+  }
+});
 
 
 describe('gulp-git', function() {
