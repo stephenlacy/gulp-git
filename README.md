@@ -56,7 +56,7 @@ gulp.task('commit', function(){
 // repo is the https url of the repo
 gulp.task('remote', function(){
   gulp.src('./')
-  .pipe(git.addRemote({remote:'origin', repo:'https://github.com/stevelacy/git-test'}));
+  .pipe(git.addRemote({remote:'origin', url:'https://github.com/stevelacy/git-test'}));
 });
 
 // Run git push 
