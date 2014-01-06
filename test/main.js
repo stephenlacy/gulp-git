@@ -52,7 +52,7 @@ describe('gulp-git', function() {
       base: "test/",
       cwd: "test/"
     });
-    var gitS = git.addRemote({remote:'origin', url:'https://github.com/stevelacy/git-test'});
+    var gitS = git.addRemote('origin', 'https://github.com/stevelacy/git-test');
     gitS.once('data', function(newFile){
       should.exist("test/.git/");
       setTimeout(function(){
@@ -70,7 +70,7 @@ describe('gulp-git', function() {
       cwd: "test/",
       path: path.join(__dirname, 'test.js')
     });
-    var gitS = git.pull({remote: 'origin', branch: 'master'});
+    var gitS = git.pull('origin', 'master');
     gitS.once('data', function(newFile){
       should.exist("test/.git/refs/heads/master");
       done();
@@ -85,7 +85,7 @@ describe('gulp-git', function() {
       path: path.join(__dirname, 'test.js'),
       contents: new Buffer(fs.readFileSync('test/test.js'))
     });
-    var gitS = git.commit({message:"initial commit"});
+    var gitS = git.commit("initial commit");
     gitS.once('data', function(newFile){
       String(fs.readFileSync('test/.git/COMMIT_EDITMSG').toString('utf8')).should.match(/initial commit/);
       done();

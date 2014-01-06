@@ -1,1 +1,1 @@
-console.log "epic"
+console.log 'epic'

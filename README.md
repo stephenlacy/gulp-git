@@ -48,7 +48,7 @@ gulp.task('add', function(){
 // src are the files to commit (or ./*)
 gulp.task('commit', function(){
   gulp.src('./git-test/*')
-  .pipe(git.commit({message:'initial commit'}));
+  .pipe(git.commit('initial commit'));
 });
 
 // Run git remote add
@@ -56,7 +56,7 @@ gulp.task('commit', function(){
 // repo is the https url of the repo
 gulp.task('remote', function(){
   gulp.src('./')
-  .pipe(git.addRemote({remote:'origin', url:'https://github.com/stevelacy/git-test'}));
+  .pipe(git.addRemote('origin', 'https://github.com/stevelacy/git-test'));
 });
 
 // Run git push 
@@ -64,7 +64,7 @@ gulp.task('remote', function(){
 // branch is the remote branch to push to
 gulp.task('push', function(){
   gulp.src('./')
-  .pipe(git.push({remote:'origin', branch:'master'}));
+  .pipe(git.push('origin', 'master'));
 });
 
 // Run git pull
@@ -72,7 +72,7 @@ gulp.task('push', function(){
 // branch is the remote branch to pull from
 gulp.task('pull', function(){
   gulp.src('./')
-  .pipe(git.pull({remote:'origin', branch:'master'}));
+  .pipe(git.pull('origin', 'master'));
 });
 
 
@@ -100,6 +100,10 @@ Adds files to repo
 `git commit -m <message> <files>`
 
 Commits changes to repo
+
+`message` allows templates:
+
+`git.commit('initial commit file: <%= file.path%>');`
 
 ### git.addRemote()
 `git remote add <remote> <repo https url>`
