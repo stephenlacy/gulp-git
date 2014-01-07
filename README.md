@@ -75,6 +75,19 @@ gulp.task('pull', function(){
   .pipe(git.pull('origin', 'master'));
 });
 
+// Tag the repo with a version
+
+gulp.task('tag', function(){
+  gulp.src('./')
+  .pipe(git.tag('v1.1.1', 'Version message'));
+});
+
+// Tag the repo With signed key
+gulp.task('tagsec', function(){
+  gulp.src('./')
+  .pipe(git.tag('v1.1.1', 'Version message with signed key', true));
+});
+
 
 
 // Run gulp's default task
@@ -131,7 +144,16 @@ Pulls changes from remote repo
 
 Pushes changes to remote repo
 
+### git.tag()
+`git tag -a/s <version> -m <message>`
 
+Tags repo with release version
+
+if the third variable is set to true the tag will use the git secure key:
+
+`git.tag('v1.1.1', 'Version message with signed key', true);`
+
+***
 
 
 
