@@ -4,5 +4,6 @@ module.exports = {
   commit: require('./lib/commit'),
   addRemote: require('./lib/addRemote'),
   push: require('./lib/push'),
-  pull: require('./lib/pull')
+  pull: require('./lib/pull'),
+  tag: require('./lib/tag')
 };

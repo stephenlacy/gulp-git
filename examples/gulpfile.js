@@ -62,6 +62,19 @@ gulp.task('pull', function(){
   .pipe(git.pull('origin', 'master'));
 });
 
+// Tag the repo
+
+gulp.task('tag', function(){
+  gulp.src('./')
+  .pipe(git.tag('v1.1.1', 'Version message'));
+});
+
+// Tag the repo WITH signed key
+gulp.task('tagsec', function(){
+  gulp.src('./')
+  .pipe(git.tag('v1.1.1', 'Version message with signed key', true));
+});
+
 
 // Run default gulp task
 

@@ -78,6 +78,24 @@ describe('gulp-git', function() {
     gitS.write(fakeFile);
   });
 
+  it('should tag a version of the repo', function(done) {
+    var fakeFile = new gutil.File({
+      base: "test/",
+      cwd: "test/",
+      path: path.join(__dirname, 'test.js')
+    });
+    var gitS = git.tag("v1.2.3", "message");
+    gitS.once('data', function(newFile){
+      setTimeout(function(){
+      should.exist("test/.git/refs/tags/v1.2.3");
+        fs.unlinkSync('test/.git/refs/tags/v1.2.3');
+        done();
+      },1000);
+    });
+    gitS.write(fakeFile);
+
+  });
+
   it('should commit a file to the repo', function(done) {
     var fakeFile = new gutil.File({
       base: "test/",
