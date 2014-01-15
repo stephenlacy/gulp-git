@@ -37,6 +37,12 @@ gulp.task('init', function(){
   .pipe(git.init());
 });
 
+// Run git init with options
+gulp.task('init', function(){
+  gulp.src('./')
+  .pipe(git.init('--quiet --bare'));
+});
+
 // Run git add 
 // src is the file(s) to add (or ./*)
 gulp.task('add', function(){
@@ -44,10 +50,22 @@ gulp.task('add', function(){
   .pipe(git.add());
 });
 
+// Run git add with options
+gulp.task('add', function(){
+  gulp.src('./git-test/*')
+  .pipe(git.add('-f -i -p'));
+});
+
 // Run git commit
 // src are the files to commit (or ./*)
 gulp.task('commit', function(){
   gulp.src('./git-test/*')
+  .pipe(git.commit('initial commit'));
+});
+
+// Run git commit with options
+gulp.task('commit', function(){
+  gulp.src('./git-test/*', '-A --amend -s')
   .pipe(git.commit('initial commit'));
 });
 
@@ -67,6 +85,13 @@ gulp.task('push', function(){
   .pipe(git.push('origin', 'master'));
 });
 
+// Run git push with options
+// branch is the remote branch to push to
+gulp.task('push', function(){
+  gulp.src('./')
+  .pipe(git.push('origin', 'master', '-f'));
+});
+
 // Run git pull
 // remote is the remote repo
 // branch is the remote branch to pull from
@@ -76,7 +101,6 @@ gulp.task('pull', function(){
 });
 
 // Tag the repo with a version
-
 gulp.task('tag', function(){
   gulp.src('./')
   .pipe(git.tag('v1.1.1', 'Version message'));
@@ -102,15 +126,27 @@ gulp.task('default', function(){
 ### git.init()
 `git init`
 
+Options: String
+
+`.init('options')`
+
 Creates an empty git repo
 
 ### git.add()
 `git add <files>`
 
+Options: String
+
+`.add('options')`
+
 Adds files to repo
 
 ### git.commit()
 `git commit -m <message> <files>`
+
+Options: String
+
+`.commit('message','options')`
 
 Commits changes to repo
 
@@ -124,6 +160,10 @@ Commits changes to repo
     defaults:
     remote: 'origin'
 
+Options: String
+
+`.addRemote('origin', 'git-repo-url', 'options')`
+
 Adds remote repo url
 
 ### git.pull()
@@ -133,6 +173,10 @@ Adds remote repo url
     remote: 'origin'
     branch: 'master'
 
+Options: String
+
+`.pull('origin', 'branch', 'options')`
+
 Pulls changes from remote repo
 
 ### git.push()
@@ -141,6 +185,10 @@ Pulls changes from remote repo
     defaults:
     remote: 'origin'
     branch: 'master'
+
+Options: String
+
+`.push('origin', 'master', 'options')`
 
 Pushes changes to remote repo
 
