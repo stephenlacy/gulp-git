@@ -182,9 +182,9 @@ describe('gulp-git', function() {
         path: path.join(__dirname, 'test.js'),
         contents: new Buffer('var awsome = this;')
       });
-      var gitS = git.commit('initial commit opts', '-n');
+      var gitS = git.commit('initial commit', '-v');
       gitS.once('data', function(newFile){
-        String(fs.readFileSync('test/.git/COMMIT_EDITMSG').toString('utf8')).should.match(/initial commit opts/);
+        String(fs.readFileSync('test/.git/COMMIT_EDITMSG').toString('utf8')).should.match(/initial commit/);
         done();
       });
       gitS.write(fakeFile);
