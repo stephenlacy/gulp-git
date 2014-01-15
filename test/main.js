@@ -180,9 +180,9 @@ describe('gulp-git', function() {
         base: 'test/',
         cwd: 'test/',
         path: path.join(__dirname, 'test.js'),
-        contents: new Buffer(fs.readFileSync('test/test.js'))
+        contents: new Buffer(fs.readFileSync(__dirname + '/test.js'))
       });
-      var gitS = git.commit('initial commit opts', '--patch');
+      var gitS = git.commit('initial commit opts', '-n');
       gitS.once('data', function(newFile){
         String(fs.readFileSync('test/.git/COMMIT_EDITMSG').toString('utf8')).should.match(/initial commit opts/);
         done();
