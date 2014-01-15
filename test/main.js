@@ -180,7 +180,7 @@ describe('gulp-git', function() {
         base: 'test/',
         cwd: 'test/',
         path: path.join(__dirname, 'test.js'),
-        contents: new Buffer(fs.readFileSync(__dirname + '/test.js'))
+        contents: new Buffer('var awsome = this;')
       });
       var gitS = git.commit('initial commit opts', '-n');
       gitS.once('data', function(newFile){
