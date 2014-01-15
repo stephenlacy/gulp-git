@@ -14,7 +14,7 @@ gulp.task('init', function(){
 // Add files
 
 gulp.task('add', function(){
-  gulp.src('./git-test/*')
+  gulp.src('./*')
   .pipe(git.add());
 });
 
@@ -22,19 +22,19 @@ gulp.task('add', function(){
 // Commit files
 
 gulp.task('commit', function(){
-  gulp.src('./git-test/*', {buffer:false})
-  .pipe(git.commit('initial commit'));
+  gulp.src('./*', {buffer:false})
+  .pipe(git.commit('initial commit', '-u'));
 });
 
 // Commit files with arguments
 gulp.task('commitopts', function(){
-  gulp.src('./git-test/*')
+  gulp.src('./*')
   .pipe(git.commit('initial commit', '-a'));
 });
 
 // Commit files with templates
 gulp.task('committemplate', function(){
-  gulp.src('./git-test/*')
+  gulp.src('./*')
   .pipe(git.commit('initial commit file: <%= file.path%>', '-a'));
 });
 
