@@ -204,11 +204,20 @@ describe('gulp-git', function() {
       gitS.write(fakeFile);
     });
     
-    /*
     it('should merge a branch', function (done) {
-      done();
+      var fakeFile = new gutil.File({
+        base: 'test/',
+        cwd: 'test/',
+        path: path.join(__dirname, 'test.js'),
+        contents: new Buffer('var awsome = this;')
+      });
+      var gitS = git.merge('testBranch', '-m "merging branches"');
+      gitS.once('data', function () {
+        String(fs.readFileSync('test/.git/COMMIT_EDITMSG').toString('utf8')).should.match(/merging branches/);
+        done();
+      });
+      gitS.write(fakeFile);
     });
-    */
     
     it('should checkout a branch', function(done) {
       var fakeFile = new gutil.File({
