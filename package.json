@@ -1,7 +1,7 @@
 {
   "name": "gulp-git",
   "description": "Git plugin for Gulp (gulpjs.com)",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "homepage": "http://github.com/stevelacy/gulp-git",
   "repository": {
     "type": "git",
@@ -23,7 +23,7 @@
     "test": "mocha --reporter spec"
   },
   "engines": {
-    "node": ">= 0.8.0"
+    "node": ">= 0.9.0"
   },
   "keywords": [
     "gulp",
