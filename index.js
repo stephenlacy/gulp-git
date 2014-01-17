@@ -5,5 +5,8 @@ module.exports = {
   addRemote: require('./lib/addRemote'),
   push: require('./lib/push'),
   pull: require('./lib/pull'),
-  tag: require('./lib/tag')
+  tag: require('./lib/tag'),
+  branch: require('./lib/branch'),
+  merge: require('./lib/merge'),
+  checkout: require('./lib/checkout')
 };
