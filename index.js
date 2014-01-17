@@ -6,5 +6,6 @@ module.exports = {
   push: require('./lib/push'),
   pull: require('./lib/pull'),
   tag: require('./lib/tag'),
-  branch: require('./lib/branch')
+  branch: require('./lib/branch'),
+  merge: require('./lib/merge')
 };
