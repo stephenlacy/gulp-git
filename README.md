@@ -24,23 +24,24 @@
 ### Install
     npm install gulp-git --save
 
+#### 0.3.0 introduced Breaking Changes!
+Git actions which did not require a [Vinyl](https://github.com/wearefractal/vinyl) file were refactored.
+Please review the following docs for changes:
 ##Example
 
 ```javascript
 var gulp = require('gulp');
-var git = require('../');
+var git = require('gulp-git');
 
 // Run git init 
 // src is the root folder for git to initialize
 gulp.task('init', function(){
-  gulp.src('./')
-  .pipe(git.init());
+  git.init();
 });
 
 // Run git init with options
 gulp.task('init', function(){
-  gulp.src('./')
-  .pipe(git.init('--quiet --bare'));
+  git.init({args: '--quiet --bare'});
 });
 
 // Run git add 
@@ -53,7 +54,7 @@ gulp.task('add', function(){
 // Run git add with options
 gulp.task('add', function(){
   gulp.src('./git-test/*')
-  .pipe(git.add('-f -i -p'));
+  .pipe(git.add({args: '-f -i -p'}));
 });
 
 // Run git commit
@@ -65,59 +66,65 @@ gulp.task('commit', function(){
 
 // Run git commit with options
 gulp.task('commit', function(){
-  gulp.src('./git-test/*', '-A --amend -s')
-  .pipe(git.commit('initial commit'));
+  gulp.src('./git-test/*')
+  .pipe(git.commit('initial commit', {args: '-A --amend -s'}));
 });
 
 // Run git remote add
 // remote is the remote repo
 // repo is the https url of the repo
 gulp.task('remote', function(){
-  gulp.src('./')
-  .pipe(git.addRemote('origin', 'https://github.com/stevelacy/git-test'));
+  git.addRemote('origin', 'https://github.com/stevelacy/git-test');
 });
 
 // Run git push 
 // remote is the remote repo
 // branch is the remote branch to push to
 gulp.task('push', function(){
-  gulp.src('./')
-  .pipe(git.push('origin', 'master'));
+  git.push('origin', 'master');
 });
 
 // Run git push with options
 // branch is the remote branch to push to
 gulp.task('push', function(){
-  gulp.src('./')
-  .pipe(git.push('origin', 'master', '-f'));
+  git.push('origin', 'master', {args: " -f"});
 });
 
 // Run git pull
 // remote is the remote repo
 // branch is the remote branch to pull from
 gulp.task('pull', function(){
-  gulp.src('./')
-  .pipe(git.pull('origin', 'master'));
+  git.pull('origin', 'master');
 });
 
 // Tag the repo with a version
 gulp.task('tag', function(){
-  gulp.src('./')
-  .pipe(git.tag('v1.1.1', 'Version message'));
+  git.tag('v1.1.1', 'Version message');
 });
 
 // Tag the repo With signed key
 gulp.task('tagsec', function(){
-  gulp.src('./')
-  .pipe(git.tag('v1.1.1', 'Version message with signed key', true));
+  git.tag('v1.1.1', 'Version message with signed key', {args: "signed"});
 });
 
+// Create a git branch
+gulp.task('branch', function(){
+  git.branch('newBranch');
+});
 
+// Checkout a git branch
+gulp.task('checkout', function(){
+  gulp.src('./*')
+  .pipe(git.checkout('branchName'));
+});
+
+// Merge branches to master
+gulp.task('merge', function(){
+  git.merge('branchName');
+});
 
 // Run gulp's default task
-gulp.task('default', function(){
-  gulp.run('add');
-});
+gulp.task('default',['add']);
 
 ```
 
@@ -126,27 +133,31 @@ gulp.task('default', function(){
 ### git.init()
 `git init`
 
-Options: String
+Options: Object
 
-`.init('options')`
+`.init({args: 'options'})`
 
 Creates an empty git repo
 
 ### git.add()
 `git add <files>`
 
-Options: String
+gulp.src: required
 
-`.add('options')`
+Options: Object
+
+`.add({args: 'options'})`
 
 Adds files to repo
 
 ### git.commit()
 `git commit -m <message> <files>`
 
-Options: String
+gulp.src: required
 
-`.commit('message','options')`
+Options: Object
+
+`.commit('message', {args: 'options'})`
 
 Commits changes to repo
 
@@ -160,9 +171,9 @@ Commits changes to repo
     defaults:
     remote: 'origin'
 
-Options: String
+Options: Object
 
-`.addRemote('origin', 'git-repo-url', 'options')`
+`.addRemote('origin', 'git-repo-url', {args: 'options'})`
 
 Adds remote repo url
 
@@ -173,9 +184,9 @@ Adds remote repo url
     remote: 'origin'
     branch: 'master'
 
-Options: String
+Options: Object
 
-`.pull('origin', 'branch', 'options')`
+`.pull('origin', 'branch', {args: 'options'})`
 
 Pulls changes from remote repo
 
@@ -186,20 +197,53 @@ Pulls changes from remote repo
     remote: 'origin'
     branch: 'master'
 
-Options: String
+Options: Object
 
-`.push('origin', 'master', 'options')`
+`.push('origin', 'master', {args: 'options'})`
 
 Pushes changes to remote repo
 
 ### git.tag()
 `git tag -a/s <version> -m <message>`
 
+Options: Object
+
 Tags repo with release version
 
-if the third variable is set to true the tag will use the git secure key:
+if options.signed is set to true, the tag will use the git secure key:
 
-`git.tag('v1.1.1', 'Version message with signed key', true);`
+`git.tag('v1.1.1', 'Version message with signed key', {signed: true});`
+
+
+### git.branch()
+`git branch <new branch name>`
+
+Options: Object
+
+`.branch('newBranch', {args: "options"})`
+
+Creates a new branch
+
+### git.checkout()
+`git checkout <new branch name>`
+
+gulp.src: required
+
+Options: Object
+
+`.checkout('newBranch', {args: "options"})`
+
+Checkouts a new branch with files
+
+### git.merge()
+`git merge <branch name> <options>`
+
+Options: Object
+
+`.merge('newBranch', {args: "options"})`
+
+Merges a branch into master
+
 
 ***
 

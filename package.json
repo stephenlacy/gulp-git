@@ -1,7 +1,7 @@
 {
   "name": "gulp-git",
   "description": "Git plugin for Gulp (gulpjs.com)",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "homepage": "http://github.com/stevelacy/gulp-git",
   "repository": {
     "type": "git",
@@ -10,8 +10,8 @@
   "author": "Steve Lacy me@slacy.me (slacy.me)",
   "main": "./index.js",
   "dependencies": {
-    "gulp-util": "~2.2.5",
-    "map-stream": "~0.0.4",
+    "gulp-util": "~2.2.14",
+    "map-stream": "~0.1.0",
     "shell-escape": "0.0.1"
   },
   "devDependencies": {
