@@ -8,8 +8,6 @@ var git = require('../');
 require('mocha');
 
 
-var testFile = __dirname + '/test.js';
-fs.openSync(testFile, 'w');
 
 describe('gulp-git', function() {
 
@@ -26,7 +24,7 @@ describe('gulp-git', function() {
       var fakeFile = new gutil.File({
         base: 'test/',
         cwd: 'test/',
-        path: testFile,
+        path: path.join(__dirname, '/test.js'),
         contents: new Buffer(fs.readFileSync('test/test.js'))
       });
       var gitS = git.add();
@@ -69,7 +67,7 @@ describe('gulp-git', function() {
       var fakeFile = new gutil.File({
         base: 'test/',
         cwd: 'test/',
-        path: testFile,
+        path: path.join(__dirname, 'test.js'),
         contents: new Buffer(fs.readFileSync('./test/test.js'))
       });
       var gitS = git.commit('initial commit');
@@ -98,7 +96,7 @@ describe('gulp-git', function() {
       var fakeFile = new gutil.File({
         base: 'test/',
         cwd: 'test/',
-        path: testFile
+        path: path.join(__dirname, 'test.js')
       });
       var gitS = git.checkout("testBranch", '-b');
       gitS.once('data', function () {
@@ -130,7 +128,7 @@ describe('gulp-git', function() {
       var fakeFile = new gutil.File({
         base: 'test/',
         cwd: 'test/',
-        path: testFile,
+        path: path.join(__dirname, '/test.js'),
         contents: new Buffer(fs.readFileSync('test/test.js'))
       });
       var gitS = git.add({args: "-u"});
@@ -166,7 +164,7 @@ describe('gulp-git', function() {
       var fakeFile = new gutil.File({
         base: 'test/',
         cwd: 'test/',
-        path: testFile,
+        path: path.join(__dirname, 'test.js'),
         contents: new Buffer(fs.readFileSync('./test/test.js'))
       });
       var gitS = git.commit('initial commit', {args: "-v"});
@@ -183,7 +181,7 @@ describe('gulp-git', function() {
       var fakeFile = new gutil.File({
         base: 'test/',
         cwd: 'test/',
-        path: testFile,
+        path: path.join(__dirname, 'test.js'),
         contents: new Buffer(fs.readFileSync('./test/test.js'))
       });
       var gitS = git.commit('initial commit templating', {args: "-v"});
@@ -214,7 +212,7 @@ describe('gulp-git', function() {
       var fakeFile = new gutil.File({
         base: 'test/',
         cwd: 'test/',
-        path: testFile
+        path: path.join(__dirname, 'test.js')
       });
       var gitS = git.checkout("testBranch", '-b');
       gitS.once('data', function () {
