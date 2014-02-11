@@ -9,7 +9,7 @@ require('mocha');
 
 
 var testFile = __dirname + '/test.js';
-var testFileMsg = path.join(__dirname, '.git/COMMIT_EDITMSG');
+var testFileMsg = path.join(__dirname, '/.git/COMMIT_EDITMSG');
 fs.openSync(testFile, 'w');
 
 describe('gulp-git', function() {
@@ -75,8 +75,10 @@ describe('gulp-git', function() {
       });
       var gitS = git.commit('initial commit');
       gitS.once('data', function(newFile){
-        String(fs.readFileSync(testFileMsg).toString('utf8')).should.match(/initial commit/);
-        done();
+        setTimeout(function(){
+          String(fs.readFileSync(testFileMsg).toString('utf8')).should.match(/initial commit/);
+          done();
+        }, 100);
       });
       gitS.write(fakeFile);
     });
@@ -90,7 +92,10 @@ describe('gulp-git', function() {
 
     it('should merge branches', function(done){
       git.merge("testBranch", {cwd: "./test/"}, function(){
-        String(fs.readFileSync(testFileMsg).toString('utf8')).should.match(/initial commit/);
+        setTimeout(function(){
+          String(fs.readFileSync(testFileMsg).toString('utf8')).should.match(/initial commit/);
+          done();
+        }, 100);
         done();
       });
     });
@@ -172,7 +177,10 @@ describe('gulp-git', function() {
       });
       var gitS = git.commit('initial commit', {args: "-v"});
       gitS.once('data', function(newFile){
-        String(fs.readFileSync(testFileMsg).toString('utf8')).should.match(/initial commit/);
+        setTimeout(function(){
+          String(fs.readFileSync(testFileMsg).toString('utf8')).should.match(/initial commit/);
+          done();
+        }, 100);
         done();
       });
       gitS.write(fakeFile);
@@ -241,14 +249,14 @@ describe('gulp-git', function() {
       gitS.write(fakeFile);
     });
 
-
+/*
     after(function(done){
       rimraf('test/.git', function(err){
         if(err) return err;
         done();
       });
     });
-
+*/
   });
 });
 
