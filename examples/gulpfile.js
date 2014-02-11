@@ -69,6 +69,11 @@ gulp.task('tagsec', function(){
   git.tag('v1.1.1', 'Version message with signed key', true);
 });
 
+gulp.task('rm', function(){
+  gulp.src('./delete')
+  .pipe(git.rm());
+});
+
 
 // default gulp task
 
