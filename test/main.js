@@ -9,6 +9,7 @@ require('mocha');
 
 
 var testFile = __dirname + '/test.js';
+var testFileMsg = path.join(__dirname, '.git/COMMIT_EDITMSG');
 fs.openSync(testFile, 'w');
 
 describe('gulp-git', function() {
@@ -74,7 +75,7 @@ describe('gulp-git', function() {
       });
       var gitS = git.commit('initial commit');
       gitS.once('data', function(newFile){
-        String(fs.readFileSync('test/.git/COMMIT_EDITMSG').toString('utf8')).should.match(/initial commit/);
+        String(fs.readFileSync(testFileMsg).toString('utf8')).should.match(/initial commit/);
         done();
       });
       gitS.write(fakeFile);
@@ -89,7 +90,7 @@ describe('gulp-git', function() {
 
     it('should merge branches', function(done){
       git.merge("testBranch", {cwd: "./test/"}, function(){
-        String(fs.readFileSync('test/.git/COMMIT_EDITMSG').toString('utf8')).should.match(/initial commit/);
+        String(fs.readFileSync(testFileMsg).toString('utf8')).should.match(/initial commit/);
         done();
       });
     });
@@ -171,7 +172,7 @@ describe('gulp-git', function() {
       });
       var gitS = git.commit('initial commit', {args: "-v"});
       gitS.once('data', function(newFile){
-        String(fs.readFileSync('test/.git/COMMIT_EDITMSG').toString('utf8')).should.match(/initial commit/);
+        String(fs.readFileSync(testFileMsg).toString('utf8')).should.match(/initial commit/);
         done();
       });
       gitS.write(fakeFile);
@@ -188,7 +189,7 @@ describe('gulp-git', function() {
       });
       var gitS = git.commit('initial commit templating', {args: "-v"});
       gitS.once('data', function(newFile){
-        String(fs.readFileSync('test/.git/COMMIT_EDITMSG').toString('utf8')).should.match(/initial commit templating/);
+        String(fs.readFileSync(testFileMsg).toString('utf8')).should.match(/initial commit templating/);
         done();
       });
       gitS.write(fakeFile);
@@ -204,7 +205,7 @@ describe('gulp-git', function() {
     
     it('should merge branches - with options', function(done){
       git.merge("testBranch", {cwd: "./test/", args: "--ff"}, function(){
-        String(fs.readFileSync('test/.git/COMMIT_EDITMSG').toString('utf8')).should.match(/initial commit/);
+        String(fs.readFileSync(testFileMsg).toString('utf8')).should.match(/initial commit/);
         done();
       });
     });
