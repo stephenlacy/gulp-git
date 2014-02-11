@@ -250,6 +250,16 @@ Options: Object
 
 Merges a branch into master
 
+### git.rm()
+`git rm <file> <options>`
+
+gulp.src: required
+
+Options: Object
+
+`.rm({args: "options"})`
+
+Removes a file from git and deletes it
 
 ***
 
