@@ -8,5 +8,6 @@ module.exports = {
   tag: require('./lib/tag'),
   branch: require('./lib/branch'),
   merge: require('./lib/merge'),
-  checkout: require('./lib/checkout')
+  checkout: require('./lib/checkout'),
+  rm: require('./lib/rm')
 };

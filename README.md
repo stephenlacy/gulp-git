@@ -123,6 +123,12 @@ gulp.task('merge', function(){
   git.merge('branchName');
 });
 
+// Git rm a file or folder
+gulp.task('rm', function(){
+  gulp.src('./gruntfile.js')
+  .pipe(git.rm());
+});
+
 // Run gulp's default task
 gulp.task('default',['add']);
 
