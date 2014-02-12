@@ -1,7 +1,7 @@
 {
   "name": "gulp-git",
   "description": "Git plugin for Gulp (gulpjs.com)",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "homepage": "http://github.com/stevelacy/gulp-git",
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
   "dependencies": {
     "gulp-util": "~2.2.14",
     "map-stream": "~0.1.0",
-    "shell-escape": "0.0.1"
+    "shell-escape": "0.1.0"
   },
   "devDependencies": {
     "mocha": "*",
