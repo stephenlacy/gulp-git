@@ -118,14 +118,6 @@ describe('gulp-git', function() {
   // With options
 
 
-    it('should initialize a empty git repo - with options', function(done) {
-
-      git.init({cwd:"./test/", args: " -q "}, function(){
-        should.exist("test/.git/");
-        done();
-      });
-
-    });
 
     it('should add files to the git repo - with options', function(done) {
       var fakeFile = new gutil.File({
