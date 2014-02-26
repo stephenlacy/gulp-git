@@ -12,7 +12,7 @@
   "dependencies": {
     "gulp-util": "~2.2.14",
     "map-stream": "~0.1.0",
-    "shell-escape": "0.1.0"
+    "any-shell-escape": "0.1.0"
   },
   "devDependencies": {
     "mocha": "*",
