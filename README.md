@@ -40,8 +40,8 @@ gulp.task('init', function(done){
 });
 
 // Run git init with options
-gulp.task('init', function(done){
-  git.init({args: '--quiet --bare'}, done);
+gulp.task('init', function(){
+  git.init({args: '--quiet --bare'});
 });
 
 // Run git add 
@@ -80,8 +80,8 @@ gulp.task('remote', function(done){
 // Run git push 
 // remote is the remote repo
 // branch is the remote branch to push to
-gulp.task('push', function(done){
-  git.push('origin', 'master', {}, done);
+gulp.task('push', function(){
+  git.push('origin', 'master');
 });
 
 // Run git push with options
@@ -98,8 +98,8 @@ gulp.task('pull', function(done){
 });
 
 // Tag the repo with a version
-gulp.task('tag', function(done){
-  git.tag('v1.1.1', 'Version message', {}, done);
+gulp.task('tag', function(){
+  git.tag('v1.1.1', 'Version message');
 });
 
 // Tag the repo With signed key
