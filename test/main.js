@@ -54,11 +54,11 @@ describe('gulp-git', function() {
         done();
       });
     });
-  
+
   // This must be run on a system which has git installed, and has git configured.
 */
     it('should tag a version of the repo', function(done) {
-      
+
       git.tag('v1.2.3', 'message', {cwd: "./test/"}, function(){
         should.exist('test/.git/refs/tags/v1.2.3');
         done();
@@ -179,7 +179,7 @@ describe('gulp-git', function() {
         done();
       });
     });
-    
+
     it('should merge branches', function(done){
       git.merge("testBranch", {cwd: "./test/"}, function(){
         setTimeout(function(){
