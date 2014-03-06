@@ -123,6 +123,11 @@ gulp.task('merge', function(){
   git.merge('branchName');
 });
 
+// Reset a commit
+gulp.task('reset', function(){
+  git.reset('SHA');
+});
+
 // Git rm a file or folder
 gulp.task('rm', function(){
   gulp.src('./gruntfile.js')
@@ -260,6 +265,15 @@ Options: Object
 `.rm({args: "options"})`
 
 Removes a file from git and deletes it
+
+### git.reset()
+`git reset <SHA> <options>`
+
+Options: Object
+
+`.reset('850f500f53f54', {args: 'options'})`
+
+Resets a git commit
 
 ***
 
