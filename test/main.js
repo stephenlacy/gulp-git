@@ -42,8 +42,8 @@ describe('gulp-git', function() {
     it('should add a Remote to the git repo', function(done) {
       git.addRemote('origin', 'https://github.com/stevelacy/git-test', {cwd:"./test/"} , function(){
         should.exist('test/.git/');
-          String(fs.readFileSync('test/.git/config').toString('utf8')).should.match(/https:\/\/github.com\/stevelacy\/git-test/);
-          done();
+        String(fs.readFileSync('test/.git/config').toString('utf8')).should.match(/https:\/\/github.com\/stevelacy\/git-test/);
+        done();
       });
     });
 
