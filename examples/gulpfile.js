@@ -22,7 +22,7 @@ gulp.task('add', function(){
 
 gulp.task('commit', function(){
   gulp.src('./*', {buffer:false})
-  .pipe(git.commit('initial commit', '-u'));
+  .pipe(git.commit('initial commit', {args: "-v"}));
 });
 
 // Commit files with arguments
