@@ -35,8 +35,8 @@ var git = require('gulp-git');
 
 // Run git init 
 // src is the root folder for git to initialize
-gulp.task('init', function(){
-  git.init();
+gulp.task('init', function(done){
+  git.init({}, done);
 });
 
 // Run git init with options
@@ -47,34 +47,34 @@ gulp.task('init', function(){
 // Run git add 
 // src is the file(s) to add (or ./*)
 gulp.task('add', function(){
-  gulp.src('./git-test/*')
+  return gulp.src('./git-test/*')
   .pipe(git.add());
 });
 
 // Run git add with options
 gulp.task('add', function(){
-  gulp.src('./git-test/*')
+  return gulp.src('./git-test/*')
   .pipe(git.add({args: '-f -i -p'}));
 });
 
 // Run git commit
 // src are the files to commit (or ./*)
 gulp.task('commit', function(){
-  gulp.src('./git-test/*')
+  return gulp.src('./git-test/*')
   .pipe(git.commit('initial commit'));
 });
 
 // Run git commit with options
 gulp.task('commit', function(){
-  gulp.src('./git-test/*')
+  return gulp.src('./git-test/*')
   .pipe(git.commit('initial commit', {args: '-A --amend -s'}));
 });
 
 // Run git remote add
 // remote is the remote repo
 // repo is the https url of the repo
-gulp.task('remote', function(){
-  git.addRemote('origin', 'https://github.com/stevelacy/git-test');
+gulp.task('remote', function(done){
+  git.addRemote('origin', 'https://github.com/stevelacy/git-test', {}, done);
 });
 
 // Run git push 
@@ -86,15 +86,15 @@ gulp.task('push', function(){
 
 // Run git push with options
 // branch is the remote branch to push to
-gulp.task('push', function(){
-  git.push('origin', 'master', {args: " -f"});
+gulp.task('push', function(done){
+  git.push('origin', 'master', {args: " -f"}, done);
 });
 
 // Run git pull
 // remote is the remote repo
 // branch is the remote branch to pull from
-gulp.task('pull', function(){
-  git.pull('origin', 'master');
+gulp.task('pull', function(done){
+  git.pull('origin', 'master', {args: '--rebase'}, done);
 });
 
 // Tag the repo with a version
@@ -103,24 +103,24 @@ gulp.task('tag', function(){
 });
 
 // Tag the repo With signed key
-gulp.task('tagsec', function(){
-  git.tag('v1.1.1', 'Version message with signed key', {args: "signed"});
+gulp.task('tagsec', function(done){
+  git.tag('v1.1.1', 'Version message with signed key', {args: "signed"}, done);
 });
 
 // Create a git branch
-gulp.task('branch', function(){
-  git.branch('newBranch');
+gulp.task('branch', function(done){
+  git.branch('newBranch', {}, done);
 });
 
 // Checkout a git branch
 gulp.task('checkout', function(){
-  gulp.src('./*')
+  return gulp.src('./*')
   .pipe(git.checkout('branchName'));
 });
 
 // Merge branches to master
-gulp.task('merge', function(){
-  git.merge('branchName');
+gulp.task('merge', function(done){
+  git.merge('branchName', {}, done);
 });
 
 // Reset a commit
@@ -130,7 +130,7 @@ gulp.task('reset', function(){
 
 // Git rm a file or folder
 gulp.task('rm', function(){
-  gulp.src('./gruntfile.js')
+  return gulp.src('./gruntfile.js')
   .pipe(git.rm());
 });
 
