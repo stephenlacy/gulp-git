@@ -65,9 +65,10 @@ gulp.task('commit', function(){
 });
 
 // Run git commit with options
-gulp.task('commit', function(){
-  return gulp.src('./git-test/*')
-  .pipe(git.commit('initial commit', {args: '-A --amend -s'}));
+gulp.task('commit', function(done){
+  gulp.src('./git-test/*')
+  .pipe(git.commit('initial commit', {args: '-A --amend -s'}, done));
+  return;
 });
 
 // Run git remote add
@@ -146,7 +147,7 @@ gulp.task('default',['add']);
 
 Options: Object
 
-`.init({args: 'options'})`
+`.init({args: 'options'}, callback)`
 
 Creates an empty git repo
 
@@ -168,13 +169,13 @@ gulp.src: required
 
 Options: Object
 
-`.commit('message', {args: 'options'})`
+`.commit('message', {args: 'options'}, callback)`
 
 Commits changes to repo
 
 `message` allows templates:
 
-`git.commit('initial commit file: <%= file.path%>');`
+`git.commit('initial commit file: <%= file.path%>', {}, callback);`
 
 ### git.addRemote()
 `git remote add <remote> <repo https url>`
