@@ -48,7 +48,7 @@ gulp.task('remote', function(){
 // Push to remote repo
 
 gulp.task('push', function(){
-  git.push('origin', 'master');
+  git.push('origin', 'master').end();
 });
 
 
