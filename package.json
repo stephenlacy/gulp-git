@@ -21,7 +21,7 @@
     "rimraf": "~2.2.5"
   },
   "scripts": {
-    "test": "mocha --reporter spec"
+    "test": "mocha --reporter spec --timeout 6000"
   },
   "engines": {
     "node": ">= 0.9.0"

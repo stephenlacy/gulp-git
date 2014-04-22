@@ -24,7 +24,7 @@
 ### Install
     npm install gulp-git --save
 
-#### 0.3.0 introduced Breaking Changes!
+#### 0.4.0 introduced Breaking Changes!
 Git actions which did not require a [Vinyl](https://github.com/wearefractal/vinyl) file were refactored.
 Please review the following docs for changes:
 ##Example
