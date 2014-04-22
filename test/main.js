@@ -37,6 +37,7 @@ describe('gulp-git', function() {
         done();
       });
       gitS.write(fakeFile);
+      gitS.end();
     });
 
     it('should add a Remote to the git repo', function(done) {
@@ -81,6 +82,7 @@ describe('gulp-git', function() {
         done();
       });
       gitS.write(fakeFile);
+      gitS.end();
     });
 
     it('should create a new branch', function(done){
@@ -111,6 +113,7 @@ describe('gulp-git', function() {
         done();
       });
       gitS.write(fakeFile);
+      gitS.end();
     });
 
 
@@ -133,6 +136,7 @@ describe('gulp-git', function() {
         done();
       });
       gitS.write(fakeFile);
+      gitS.end();
     });
 
     it('should add a Remote to the git repo - with options', function(done) {
@@ -169,6 +173,7 @@ describe('gulp-git', function() {
         done();
       });
       gitS.write(fakeFile);
+      gitS.end();
 
     });
 
@@ -206,6 +211,7 @@ describe('gulp-git', function() {
         done();
       });
       gitS.write(fakeFile);
+      gitS.end();
     });
 
   });

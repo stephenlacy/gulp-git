@@ -35,8 +35,8 @@ var git = require('gulp-git');
 
 // Run git init 
 // src is the root folder for git to initialize
-gulp.task('init', function(done){
-  git.init({}, done);
+gulp.task('init', function(){
+  git.init();
 });
 
 // Run git init with options
@@ -73,28 +73,30 @@ gulp.task('commit', function(){
 // Run git remote add
 // remote is the remote repo
 // repo is the https url of the repo
-gulp.task('remote', function(done){
-  git.addRemote('origin', 'https://github.com/stevelacy/git-test', {}, done);
+gulp.task('remote', function(){
+  git.addRemote('origin', 'https://github.com/stevelacy/git-test');
 });
 
 // Run git push 
 // remote is the remote repo
 // branch is the remote branch to push to
 gulp.task('push', function(){
-  git.push('origin', 'master');
+  git.push('origin', 'master')
+  .end();
 });
 
 // Run git push with options
 // branch is the remote branch to push to
-gulp.task('push', function(done){
-  git.push('origin', 'master', {args: " -f"}, done);
+gulp.task('push', function(){
+  git.push('origin', 'master', {args: " -f"})
+  .end();
 });
 
 // Run git pull
 // remote is the remote repo
 // branch is the remote branch to pull from
-gulp.task('pull', function(done){
-  git.pull('origin', 'master', {args: '--rebase'}, done);
+gulp.task('pull', function(){
+  git.pull('origin', 'master', {args: '--rebase'});
 });
 
 // Tag the repo with a version
@@ -103,13 +105,13 @@ gulp.task('tag', function(){
 });
 
 // Tag the repo With signed key
-gulp.task('tagsec', function(done){
-  git.tag('v1.1.1', 'Version message with signed key', {args: "signed"}, done);
+gulp.task('tagsec', function(){
+  git.tag('v1.1.1', 'Version message with signed key', {args: "signed"});
 });
 
 // Create a git branch
-gulp.task('branch', function(done){
-  git.branch('newBranch', {}, done);
+gulp.task('branch', function(){
+  git.branch('newBranch');
 });
 
 // Checkout a git branch
@@ -119,8 +121,8 @@ gulp.task('checkout', function(){
 });
 
 // Merge branches to master
-gulp.task('merge', function(done){
-  git.merge('branchName', {}, done);
+gulp.task('merge', function(){
+  git.merge('branchName');
 });
 
 // Reset a commit
@@ -210,9 +212,11 @@ Pulls changes from remote repo
 
 Options: Object
 
-`.push('origin', 'master', {args: 'options'})`
+`.push('origin', 'master', {args: 'options'}).end()`
 
 Pushes changes to remote repo
+
+The stream `end` is required.
 
 ### git.tag()
 `git tag -a/s <version> -m <message>`

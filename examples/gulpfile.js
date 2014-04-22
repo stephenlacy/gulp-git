@@ -69,9 +69,14 @@ gulp.task('tagsec', function(){
   git.tag('v1.1.1', 'Version message with signed key', true);
 });
 
+gulp.task('push-tag', function(){
+  git.push('origin', 'v1.1.1').end();
+});
+
+
 gulp.task('rm', function(){
   gulp.src('./delete')
-  .pipe(git.rm());
+  .pipe(git.rm({args: '-f'}));
 });
 
 
