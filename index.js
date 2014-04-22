@@ -9,5 +9,6 @@ module.exports = {
   branch: require('./lib/branch'),
   merge: require('./lib/merge'),
   checkout: require('./lib/checkout'),
-  rm: require('./lib/rm')
+  rm: require('./lib/rm'),
+  reset: require('./lib/reset')
 };
