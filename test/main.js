@@ -79,7 +79,7 @@ describe('gulp-git', function() {
       gitS.once('data', function(newFile){
         setTimeout(function(){
           String(fs.readFileSync(testCommit).toString('utf8')).should.match(/initial commit/);
-        }, 100);
+        }, 1000);
         done();
       });
       gitS.write(fakeFile);
