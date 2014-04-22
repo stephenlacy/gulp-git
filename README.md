@@ -82,7 +82,7 @@ gulp.task('remote', function(){
 // branch is the remote branch to push to
 gulp.task('push', function(){
   git.push('origin', 'master')
-  .end();
+  .end();  // .end() is required
 });
 
 // Run git push with options
