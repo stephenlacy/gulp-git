@@ -13,6 +13,27 @@ fs.openSync(testFile, 'w');
 
 var testCommit = path.join(__dirname, '/.git/COMMIT_EDITMSG');
 
+describe('cloning', function(){
+  before(function(done){
+    git.clone('git://github.com/stevelacy/gulp-git', { args: './test/tmp' }, function(err){
+      if(err) return err;
+      done();
+    });
+  });
+
+  it('should have cloned project into tmp directory', function(done){
+    should.exist('./test/tmp/.git');
+    done();
+  });
+
+  after(function(done){
+    rimraf('./test/tmp', function(err){
+      if(err) return err;
+      done();
+    });
+  });
+});
+
 describe('gulp-git', function() {
 
   describe('normal usage ', function(){
