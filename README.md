@@ -99,6 +99,13 @@ gulp.task('pull', function(){
   git.pull('origin', 'master', {args: '--rebase'});
 });
 
+
+// Clone a remote repo
+gulp.task('clone', function(){
+  git.clone('https://github.com/stevelacy/gulp-git');
+});
+
+
 // Tag the repo with a version
 gulp.task('tag', function(){
   git.tag('v1.1.1', 'Version message');
@@ -275,9 +282,19 @@ Removes a file from git and deletes it
 
 Options: Object
 
-`.reset('850f500f53f54', {args: 'options'})`
+`.reset('850f500f53f54', {args: "options"})`
 
 Resets a git commit
+
+### git.clone()
+`git clone <remote> <options>`
+
+Options: Object
+
+`.clone('https://remote.git', {args: "options"})`
+
+Clones a remote repo
+
 
 ***
 

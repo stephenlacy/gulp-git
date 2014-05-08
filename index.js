@@ -5,11 +5,11 @@ module.exports = {
   branch: require('./lib/branch'),
   merge: require('./lib/merge'),
   reset: require('./lib/reset'),
+  clone: require('./lib/clone'),
   init: require('./lib/init'),
   push: require('./lib/push'),
   pull: require('./lib/pull'),
   add: require('./lib/add'),
   tag: require('./lib/tag'),
-  rm: require('./lib/rm'),
-  clone: require('./lib/clone')
+  rm: require('./lib/rm')
 };
