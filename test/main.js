@@ -1,12 +1,10 @@
-/* global describe, it, after */
+/* global describe, it, after, before */
 var fs = require('fs');
 var path = require('path');
 var should = require('should');
 var gutil = require('gulp-util');
 var rimraf = require('rimraf');
 var git = require('../');
-
-require('mocha');
 
 var testFile = __dirname + '/test.js';
 fs.openSync(testFile, 'w');

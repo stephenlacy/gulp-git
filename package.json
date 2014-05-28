@@ -17,10 +17,11 @@
   "devDependencies": {
     "mocha": "*",
     "should": "*",
+    "jshint": "^2.5.1",
     "rimraf": "~2.2.5"
   },
   "scripts": {
-    "test": "mocha --reporter spec --timeout 6000"
+    "test": "mocha --reporter spec --timeout 6000 && jshint ./index.js ./examples/. ./lib/. ./test/."
   },
   "engines": {
     "node": ">= 0.9.0"
