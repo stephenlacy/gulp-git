@@ -95,8 +95,8 @@ describe('gulp-git', function() {
       gitS.once('finish', function(){
         setTimeout(function () {
           String(fs.readFileSync(testCommit).toString('utf8')).should.match(/initial commit/);
-        }, 1000);
-        done();
+          done();
+        }, 100);
       });
       gitS.write(fakeFile);
       gitS.end();
@@ -113,8 +113,8 @@ describe('gulp-git', function() {
       git.merge("testBranch", {cwd: "./test/"}, function(){
         setTimeout(function(){
           String(fs.readFileSync(testCommit).toString('utf8')).should.match(/initial commit/);
+          done();
         }, 100);
-        done();
       });
     });
 
@@ -150,8 +150,8 @@ describe('gulp-git', function() {
           fs.exists(testFile, function(exists) {
             exists.should.be.false;
           });
+          done();
         }, 100);
-        done();
       });
       gitS.write(fakeFile);
       gitS.end();
