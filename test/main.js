@@ -15,10 +15,7 @@ var testCommit = path.join(__dirname, '/.git/COMMIT_EDITMSG');
 
 describe('cloning', function(){
   before(function(done){
-    git.clone('git://github.com/stevelacy/gulp-git', { args: './test/tmp' }, function(err){
-      if(err) return err;
-      done();
-    });
+    git.clone('git://github.com/stevelacy/gulp-git', { args: './test/tmp' }, done);
   });
 
   it('should have cloned project into tmp directory', function(done){
@@ -27,10 +24,7 @@ describe('cloning', function(){
   });
 
   after(function(done){
-    rimraf('./test/tmp', function(err){
-      if(err) return err;
-      done();
-    });
+    rimraf('./test/tmp', done);
   });
 });
 
@@ -126,7 +120,7 @@ describe('gulp-git', function() {
       });
     });
 
-    /* 
+    /*
      Requires git pull
     it('should checkout a branch', function(done) {
       var fakeFile = new gutil.File({
@@ -168,10 +162,7 @@ describe('gulp-git', function() {
   });
 
   after(function(done){
-    rimraf('test/.git', function(err){
-      if(err) return err;
-      done();
-    });
+    rimraf('test/.git', done);
   });
 
 });
