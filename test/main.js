@@ -109,6 +109,20 @@ describe('gulp-git', function() {
       });
     });
 
+    it('should create a new branch, switch to branch, and return branch name', function(done){
+      var branchName = 'anotherBranch';
+      git.branch(branchName, {cwd: "./test/"}, function(){
+        should.exist('test/.git/refs/heads/'+branchName);
+        git.checkout(branchName, {cwd: "./test/"}, function(){
+          git.revParse({args: '--abbrev-ref HEAD', cwd: './test/'}, function (err, branch) {
+            branch.should.equal(branchName);
+            should.not.exist(err);
+            done();
+          });
+        });
+      });
+    });
+
     it('should merge branches', function(done){
       git.merge("testBranch", {cwd: "./test/"}, function(){
         setTimeout(function(){
