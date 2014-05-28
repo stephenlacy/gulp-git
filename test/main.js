@@ -41,7 +41,7 @@ describe('gulp-git', function() {
       var fakeFile = new gutil.File({
         base: 'test/',
         cwd: 'test/',
-        path: path.join(__dirname, '/test.js'),
+        path: path.join(__dirname, 'test.js'),
         contents: new Buffer(fs.readFileSync('test/test.js'))
       });
       var gitS = git.add();
@@ -83,17 +83,17 @@ describe('gulp-git', function() {
     });
   */
 
-
     it('should commit a file to the repo', function(done) {
+      var fakeFilename = path.join(__dirname, 'test.js');
       var fakeFile = new gutil.File({
-        base: 'test/',
-        cwd: 'test/',
-        path: path.join(__dirname, 'test.js'),
-        contents: new Buffer(fs.readFileSync('./test/test.js'))
+        base: '/',
+        cwd: '/',
+        path: fakeFilename,
+        contents: new Buffer(fs.readFileSync(fakeFilename))
       });
-      var gitS = git.commit('initial commit');
-      gitS.once('data', function(newFile){
-        setTimeout(function(){
+      var gitS = git.commit('initial commit', {cwd:"./test/"});
+      gitS.once('finish', function(){
+        setTimeout(function () {
           String(fs.readFileSync(testCommit).toString('utf8')).should.match(/initial commit/);
         }, 1000);
         done();
