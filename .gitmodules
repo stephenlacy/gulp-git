@@ -1,0 +1,3 @@
+[submodule "test/testSubmodule"]
+	path = test/testSubmodule
+	url = git://github.com/stevelacy/gulp-git

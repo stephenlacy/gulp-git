@@ -165,13 +165,31 @@ describe('gulp-git', function() {
       gitS.end();
     });
 
+    it('should create a .gitmodules file listing added submodules', function(done){
+      git.submodule.add('git://github.com/stevelacy/gulp-git', 'testSubmodule', { cwd: "./test/" }, function(){
+        should.exist('test/.gitmodules');
+        setTimeout(function(){
+          String(fs.readFileSync('test/.gitmodules').toString('utf8')).should.match(/https:\/\/github.com\/stevelacy\/git-test/);
+        }, 100);
+        done();
+      });
+    });
   });
 
   after(function(done){
     rimraf('test/.git', function(err){
       if(err) return err;
-      done();
+        fs.unlink('test/.gitmodules', function(err){
+          if(err) return err;
+          rimraf('test/testSubmodule', function(err){
+            if(err) return err;
+            done();
+          });
+        });
     });
+
+    
+
   });
 
 });

@@ -11,5 +11,6 @@ module.exports = {
   pull: require('./lib/pull'),
   add: require('./lib/add'),
   tag: require('./lib/tag'),
-  rm: require('./lib/rm')
+  rm: require('./lib/rm'),
+  submodule: require('./lib/submodule')
 };
