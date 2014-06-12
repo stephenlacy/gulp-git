@@ -167,7 +167,7 @@ describe('gulp-git', function() {
 
     describe('submodule', function(){
       it('should add a submodule to the git repo', function(done){
-        git.submodule.add('git://github.com/stevelacy/gulp-git', 'testSubmodule', { cwd: "./test/" }, function(){
+        git.submodule.add('https://github.com/stevelacy/git-test', 'testSubmodule', { cwd: "./test/" }, function(){
           should.exist('test/.gitmodules');
           setTimeout(function(){
             String(fs.readFileSync('test/.gitmodules').toString('utf8')).should.match(/https:\/\/github.com\/stevelacy\/git-test/);
