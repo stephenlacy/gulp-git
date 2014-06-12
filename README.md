@@ -143,6 +143,14 @@ gulp.task('rm', function(){
   .pipe(git.rm());
 });
 
+gulp.task('addSubmodule', function(){
+  git.submodule.add('https://github.com/stevelacy/git-test', 'git-test', { args: '-b master'});
+});
+
+gulp.task('updateSubmodules', function(){
+  git.submodule.update({ args: '--init' });
+});
+
 // Run gulp's default task
 gulp.task('default',['add']);
 
@@ -295,6 +303,19 @@ Options: Object
 
 Clones a remote repo
 
+### git.submodule.add()
+`git submodule add <options> <repository> <path>`
+
+Options: Object
+
+`.submodule.add('https://remote.git', 'path', {args: "options"})`
+
+### git.submodule.update()
+`git submodule update <options>`
+
+Options: Object
+
+`.submodule.update({args: "options"})`
 
 ***
 
