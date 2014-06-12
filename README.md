@@ -308,7 +308,7 @@ Clones a remote repo
 
 Options: Object
 
-`.submodule.add('https://remote.git', 'path', {args: "options"})`
+`.submodule.add('https://repository.git', 'path', {args: "options"})`
 
 ### git.submodule.update()
 `git submodule update <options>`
