@@ -172,25 +172,24 @@ describe('gulp-git', function() {
           setTimeout(function(){
             String(fs.readFileSync('test/.gitmodules').toString('utf8')).should.match(/https:\/\/github.com\/stevelacy\/git-test/);
           }, 100);
+          should.exist('test/testSubmodule');
+          should.exist('test/testSubmodule/.git/');
           done();
         });
       });
 
-      it('should init the submodule', function(done){
-        // TODO
-      });
-
       it('should update submodules', function(done){
-        // TODO
+        git.submodule.update({ cwd: "./test/" }, function(){
+          should.exist('test/testSubmodule');
+          should.exist('test/testSubmodule/.git/');
+          done();
+        });
       });
 
       after(function(done){
-        fs.unlink('test/.gitmodules', function(err){
+        rimraf('test/testSubmodule', function(err){
           if(err) return err;
-          rimraf('test/testSubmodule', function(err){
-            if(err) return err;
-            done();
-          });
+          done();
         });
       });
     })
@@ -200,7 +199,10 @@ describe('gulp-git', function() {
   after(function(done){
     rimraf('test/.git', function(err){
       if(err) return err;
-      done();
+      fs.unlink('test/.gitmodules', function(err){
+        if(err) return err;
+        done();
+      });
     });
   });
 
