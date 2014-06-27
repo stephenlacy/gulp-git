@@ -303,19 +303,19 @@ Options: Object
 
 Clones a remote repo
 
-### git.submodule.add()
+### git.addSubmodule()
 `git submodule add <options> <repository> <path>`
 
 Options: Object
 
-`.submodule.add('https://repository.git', 'path', {args: "options"})`
+`.addSubmodule('https://repository.git', 'path', {args: "options"})`
 
-### git.submodule.update()
+### git.updateSubmodule()
 `git submodule update <options>`
 
 Options: Object
 
-`.submodule.update({args: "options"})`
+`.updateSubmodule({args: "options"})`
 
 ***
 
