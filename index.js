@@ -12,5 +12,6 @@ module.exports = {
   add: require('./lib/add'),
   tag: require('./lib/tag'),
   rm: require('./lib/rm'),
-  submodule: require('./lib/submodule')
+  addSubmodule: require('./lib/addSubmodule'),
+  updateSubmodule: require('./lib/updateSubmodule')
 };
