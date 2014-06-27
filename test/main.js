@@ -192,7 +192,7 @@ describe('gulp-git', function() {
           done();
         });
       });
-    })
+    });
     
   });
 
