@@ -205,7 +205,7 @@ describe('gulp-git', function() {
   after(function(done){
     rimraf('test/.git', function(err){
       if(err) return err;
-      fs.unlink('test/.gitmodules', function(err){
+      rimraf('test/.gitmodules', function(err){
         if(err) return err;
         done();
       });
