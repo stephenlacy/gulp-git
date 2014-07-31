@@ -70,7 +70,7 @@ describe('gulp-git', function() {
           path: testFiles[i],
           contents: new Buffer(fs.readFileSync('test/test.js'))
         });
-      };
+      }
 
       var gitS = git.add();
       gitS.once('data', function(newFile){
@@ -79,9 +79,9 @@ describe('gulp-git', function() {
         done();
       });
 
-      for (var i = 0; i < fakeFiles.length; i++) {
-        gitS.write(fakeFiles[i]);
-      };
+      for (var j = 0; j < fakeFiles.length; j++) {
+        gitS.write(fakeFiles[j]);
+      }
       gitS.end();
     });
 
@@ -133,28 +133,6 @@ describe('gulp-git', function() {
       gitS.end();
     });
 
-    it('should commit multiple files to the repo', function(done) {
-      var fakeFiles = [];
-      for (var i = 0; i < 10; i++) {
-        fakeFiles[i] = new gutil.File({
-          base: 'test/',
-          cwd: 'test/',
-          path: testFiles[i],
-          contents: new Buffer(fs.readFileSync('test/test.js'))
-        });
-      }
-      var gitS = git.commit('second commit');
-      gitS.once('data', function(newFile){
-        setTimeout(function(){
-          String(fs.readFileSync(testCommit).toString('utf8')).should.match(/second commit/);
-        }, 1000);
-        done();
-      });
-      for (var i = 0; i < fakeFiles.length; i++) {
-        gitS.write(fakeFiles[i]);
-      }
-      gitS.end();
-    });
 
 
     it('should create a new branch', function(done){
@@ -207,52 +185,6 @@ describe('gulp-git', function() {
     */
 
 
-    it('should rm multiple files', function(done) {
-      var fakeFiles = [];
-
-      for (var i = 0; i < 10; i++) {
-        fakeFiles[i] = new gutil.File({
-          base: 'test/',
-          cwd: 'test/',
-          path: testFiles[i],
-          contents: new Buffer(fs.readFileSync('test/test.js'))
-        });
-      }
-
-      var gitS = git.rm();
-      gitS.once('data', function (newFile) {
-        setTimeout(function(){
-          fs.exists(newFile, function(exists) {
-            exists.should.be.false;
-          });
-        }, 100);
-        done();
-      });
-      for (var i = 0; i < fakeFiles.length; i++) {
-        gitS.write(fakeFiles[i]);
-      }
-      gitS.end();
-
-    });
-
-    it('should rm a file', function(done) {
-      var fakeFile = new gutil.File({
-        base: 'test/',
-        cwd: 'test/',
-        path: testFile
-      });
-      var gitS = git.rm();
-      gitS.once('data', function (newFile) {
-        setTimeout(function(){
-          fs.exists(testFile, function(exists) {
-            exists.should.be.false;
-          });
-          done();
-        }, 100);
-      });
-      gitS.write(fakeFile);
-      gitS.end();
-    });
     describe('submodule', function(){
       it('should add a submodule to the git repo', function(done){
         git.addSubmodule('https://github.com/stevelacy/git-test', 'testSubmodule', { cwd: "./test/" }, function(){
@@ -281,6 +213,58 @@ describe('gulp-git', function() {
         });
       });
     });
+
+    describe('rm', function(){
+      it('should rm multiple files', function(done) {
+        var fakeFiles = [];
+
+        for (var i = 0; i < 10; i++) {
+          fakeFiles[i] = new gutil.File({
+            base: 'test/',
+            cwd: 'test/',
+            path: testFiles[i],
+            contents: new Buffer(fs.readFileSync('test/test.js'))
+          });
+        }
+
+        var gitS = git.rm({args: '-f'});
+        gitS.once('data', function (newFile) {
+          setTimeout(function(){
+            fs.exists(newFile, function(exists) {
+              exists.should.be.false;
+            });
+          }, 300);
+          done();
+        });
+        for (var j = 0; j < fakeFiles.length; j++) {
+          gitS.write(fakeFiles[j]);
+        }
+        gitS.end();
+
+      });
+
+      it('should rm a file', function(done) {
+        var fakeFile = new gutil.File({
+          base: 'test/',
+          cwd: 'test/',
+          path: testFile
+        });
+        var gitS = git.rm();
+        gitS.once('data', function (newFile) {
+          setTimeout(function(){
+            fs.exists(testFile, function(exists) {
+              exists.should.be.false;
+            });
+            done();
+          }, 100);
+        });
+        gitS.write(fakeFile);
+        gitS.end();
+      });
+    });
+
+
+
 
   });
 
