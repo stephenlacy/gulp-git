@@ -1,6 +1,7 @@
 module.exports = {
   addRemote: require('./lib/addRemote'),
   checkout: require('./lib/checkout'),
+  checkoutFiles: require('./lib/checkoutFiles'),
   commit: require('./lib/commit'),
   branch: require('./lib/branch'),
   merge: require('./lib/merge'),
@@ -11,5 +12,6 @@ module.exports = {
   pull: require('./lib/pull'),
   add: require('./lib/add'),
   tag: require('./lib/tag'),
-  rm: require('./lib/rm')
+  rm: require('./lib/rm'),
+  revParse: require('./lib/revParse')
 };

@@ -1,12 +1,10 @@
-/* global describe, it, after */
+/* global describe, it, after, before */
 var fs = require('fs');
 var path = require('path');
 var should = require('should');
 var gutil = require('gulp-util');
 var rimraf = require('rimraf');
 var git = require('../');
-
-require('mocha');
 
 var testFile = __dirname + '/test.js';
 fs.openSync(testFile, 'w');
@@ -15,10 +13,7 @@ var testCommit = path.join(__dirname, '/.git/COMMIT_EDITMSG');
 
 describe('cloning', function(){
   before(function(done){
-    git.clone('git://github.com/stevelacy/gulp-git', { args: './test/tmp' }, function(err){
-      if(err) return err;
-      done();
-    });
+    git.clone('git://github.com/stevelacy/gulp-git', { args: './test/tmp' }, done);
   });
 
   it('should have cloned project into tmp directory', function(done){
@@ -27,10 +22,7 @@ describe('cloning', function(){
   });
 
   after(function(done){
-    rimraf('./test/tmp', function(err){
-      if(err) return err;
-      done();
-    });
+    rimraf('./test/tmp', done);
   });
 });
 
@@ -49,7 +41,7 @@ describe('gulp-git', function() {
       var fakeFile = new gutil.File({
         base: 'test/',
         cwd: 'test/',
-        path: path.join(__dirname, '/test.js'),
+        path: path.join(__dirname, 'test.js'),
         contents: new Buffer(fs.readFileSync('test/test.js'))
       });
       var gitS = git.add();
@@ -91,20 +83,20 @@ describe('gulp-git', function() {
     });
   */
 
-
     it('should commit a file to the repo', function(done) {
+      var fakeFilename = path.join(__dirname, 'test.js');
       var fakeFile = new gutil.File({
-        base: 'test/',
-        cwd: 'test/',
-        path: path.join(__dirname, 'test.js'),
-        contents: new Buffer(fs.readFileSync('./test/test.js'))
+        base: '/',
+        cwd: '/',
+        path: fakeFilename,
+        contents: new Buffer(fs.readFileSync(fakeFilename))
       });
-      var gitS = git.commit('initial commit');
-      gitS.once('data', function(newFile){
-        setTimeout(function(){
+      var gitS = git.commit('initial commit', {cwd:"./test/"});
+      gitS.once('finish', function(){
+        setTimeout(function () {
           String(fs.readFileSync(testCommit).toString('utf8')).should.match(/initial commit/);
-        }, 1000);
-        done();
+          done();
+        }, 100);
       });
       gitS.write(fakeFile);
       gitS.end();
@@ -117,16 +109,30 @@ describe('gulp-git', function() {
       });
     });
 
+    it('should create a new branch, switch to branch, and return branch name', function(done){
+      var branchName = 'anotherBranch';
+      git.branch(branchName, {cwd: "./test/"}, function(){
+        should.exist('test/.git/refs/heads/'+branchName);
+        git.checkout(branchName, {cwd: "./test/"}, function(){
+          git.revParse({args: '--abbrev-ref HEAD', cwd: './test/'}, function (err, branch) {
+            branch.should.equal(branchName);
+            should.not.exist(err);
+            done();
+          });
+        });
+      });
+    });
+
     it('should merge branches', function(done){
       git.merge("testBranch", {cwd: "./test/"}, function(){
         setTimeout(function(){
           String(fs.readFileSync(testCommit).toString('utf8')).should.match(/initial commit/);
+          done();
         }, 100);
-        done();
       });
     });
 
-    /* 
+    /*
      Requires git pull
     it('should checkout a branch', function(done) {
       var fakeFile = new gutil.File({
@@ -158,8 +164,8 @@ describe('gulp-git', function() {
           fs.exists(testFile, function(exists) {
             exists.should.be.false;
           });
+          done();
         }, 100);
-        done();
       });
       gitS.write(fakeFile);
       gitS.end();
@@ -168,10 +174,7 @@ describe('gulp-git', function() {
   });
 
   after(function(done){
-    rimraf('test/.git', function(err){
-      if(err) return err;
-      done();
-    });
+    rimraf('test/.git', done);
   });
 
 });

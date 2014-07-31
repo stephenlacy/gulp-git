@@ -3,7 +3,7 @@
 [![NPM version](https://badge.fury.io/js/gulp-git.png)](http://badge.fury.io/js/gulp-git)
 
 <table>
-<tr> 
+<tr>
 <td>Package</td><td>gulp-git</td>
 </tr>
 <tr>
@@ -33,268 +33,416 @@ Please review the following docs for changes:
 var gulp = require('gulp');
 var git = require('gulp-git');
 
-// Run git init 
+// Run git init
 // src is the root folder for git to initialize
 gulp.task('init', function(){
-  git.init();
+  git.init(function (err) {
+    if (err) throw err;
+  });
 });
 
 // Run git init with options
 gulp.task('init', function(){
-  git.init({args: '--quiet --bare'});
+  git.init({args: '--quiet --bare'}, function (err) {
+    if (err) throw err;
+  });
 });
 
-// Run git add 
+// Run git add
 // src is the file(s) to add (or ./*)
 gulp.task('add', function(){
   return gulp.src('./git-test/*')
-  .pipe(git.add());
+    .pipe(git.add());
 });
 
 // Run git add with options
 gulp.task('add', function(){
   return gulp.src('./git-test/*')
-  .pipe(git.add({args: '-f -i -p'}));
+    .pipe(git.add({args: '-f -i -p'}));
 });
 
 // Run git commit
 // src are the files to commit (or ./*)
 gulp.task('commit', function(){
   return gulp.src('./git-test/*')
-  .pipe(git.commit('initial commit'));
+    .pipe(git.commit('initial commit'));
 });
 
 // Run git commit with options
 gulp.task('commit', function(){
   return gulp.src('./git-test/*')
-  .pipe(git.commit('initial commit', {args: '-A --amend -s'}));
+    .pipe(git.commit('initial commit', {args: '-A --amend -s'}));
 });
 
 // Run git remote add
 // remote is the remote repo
 // repo is the https url of the repo
 gulp.task('remote', function(){
-  git.addRemote('origin', 'https://github.com/stevelacy/git-test');
+  git.addRemote('origin', 'https://github.com/stevelacy/git-test', function (err) {
+    if (err) throw err;
+  });
 });
 
-// Run git push 
+// Run git push
 // remote is the remote repo
 // branch is the remote branch to push to
 gulp.task('push', function(){
-  git.push('origin', 'master')
-  .end();  // .end() is required
+  git.push('origin', 'master', function (err) {
+    if (err) throw err;
+  });
 });
 
 // Run git push with options
 // branch is the remote branch to push to
 gulp.task('push', function(){
-  git.push('origin', 'master', {args: " -f"})
-  .end();
+  git.push('origin', 'master', {args: " -f"}, function (err) {
+    if (err) throw err;
+  });
 });
 
 // Run git pull
 // remote is the remote repo
 // branch is the remote branch to pull from
 gulp.task('pull', function(){
-  git.pull('origin', 'master', {args: '--rebase'});
+  git.pull('origin', 'master', {args: '--rebase'}, function (err) {
+    if (err) throw err;
+  });
 });
 
 
 // Clone a remote repo
 gulp.task('clone', function(){
-  git.clone('https://github.com/stevelacy/gulp-git');
+  git.clone('https://github.com/stevelacy/gulp-git', function (err) {
+    if (err) throw err;
+  });
 });
 
 
 // Tag the repo with a version
 gulp.task('tag', function(){
-  git.tag('v1.1.1', 'Version message');
+  git.tag('v1.1.1', 'Version message', function (err) {
+    if (err) throw err;
+  });
 });
 
 // Tag the repo With signed key
 gulp.task('tagsec', function(){
-  git.tag('v1.1.1', 'Version message with signed key', {args: "signed"});
+  git.tag('v1.1.1', 'Version message with signed key', {args: "signed"}, function (err) {
+    if (err) throw err;
+  });
 });
 
 // Create a git branch
 gulp.task('branch', function(){
-  git.branch('newBranch');
+  git.branch('newBranch', function (err) {
+    if (err) throw err;
+  });
 });
 
 // Checkout a git branch
 gulp.task('checkout', function(){
-  return gulp.src('./*')
-  .pipe(git.checkout('branchName'));
+  git.checkout('branchName', function (err) {
+    if (err) throw err;
+  });
+});
+
+// Create and switch to a git branch
+gulp.task('checkout', function(){
+  git.checkout('branchName', {args:'-b'}, function (err) {
+    if (err) throw err;
+  });
 });
 
 // Merge branches to master
 gulp.task('merge', function(){
-  git.merge('branchName');
+  git.merge('branchName', function (err) {
+    if (err) throw err;
+  });
 });
 
 // Reset a commit
 gulp.task('reset', function(){
-  git.reset('SHA');
+  git.reset('SHA', function (err) {
+    if (err) throw err;
+  });
 });
 
 // Git rm a file or folder
 gulp.task('rm', function(){
   return gulp.src('./gruntfile.js')
-  .pipe(git.rm());
+    .pipe(git.rm());
 });
 
 // Run gulp's default task
 gulp.task('default',['add']);
-
 ```
 
 ##API
 
-### git.init()
+### git.init(opt, cb)
 `git init`
-
-Options: Object
-
-`.init({args: 'options'})`
 
 Creates an empty git repo
 
-### git.add()
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+
+`cb`: function, passed err if any
+
+```js
+git.init({args:'options'}, function (err) {
+  //if (err) ...
+});
+```
+
+### git.clone(remote, opt, cb)
+`git clone <remote> <options>`
+
+Clones a remote repo for the first time
+
+`remote`: String, remote url
+
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+
+`cb`: function, passed err if any
+
+```js
+git.clone('https://remote.git', function (err) {
+  //if (err) ...
+});
+```
+
+### git.add(opt)
 `git add <files>`
-
-gulp.src: required
-
-Options: Object
-
-`.add({args: 'options'})`
 
 Adds files to repo
 
-### git.commit()
+`opt`: Object (optional) `{args: 'options'}`
+
+```js
+gulp.src('./*')
+  .pipe(git.add());
+});
+```
+
+### git.commit(message, opt)
 `git commit -m <message> <files>`
-
-gulp.src: required
-
-Options: Object
-
-`.commit('message', {args: 'options'})`
 
 Commits changes to repo
 
-`message` allows templates:
+`message`: String, commit message
 
-`git.commit('initial commit file: <%= file.path%>');`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
 
-### git.addRemote()
+```js
+gulp.src('./*')
+  .pipe(git.commit('commit message'));
+});
+```
+
+### git.addRemote(remote, url, opt, cb)
 `git remote add <remote> <repo https url>`
-
-    defaults:
-    remote: 'origin'
-
-Options: Object
-
-`.addRemote('origin', 'git-repo-url', {args: 'options'})`
 
 Adds remote repo url
 
-### git.pull()
+`remote`: String, name of remote, default: `origin`
+
+`url`: String, url of remote
+
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+
+`cb`: function, passed err if any
+
+```js
+git.addRemote('origin', 'git-repo-url', function (err) {
+  //if (err) ...
+});
+```
+
+### git.pull(remote, branch, opt, cb)
 `git pull <remote> <branch>`
-
-    defaults:
-    remote: 'origin'
-    branch: 'master'
-
-Options: Object
-
-`.pull('origin', 'branch', {args: 'options'})`
 
 Pulls changes from remote repo
 
-### git.push()
+`remote`: String, name of remote, default: `origin`
+
+`branch`: String, branch, default: `master`
+
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+
+`cb`: function, passed err if any
+
+```js
+git.pull('origin', 'master', function (err) {
+  //if (err) ...
+});
+```
+
+### git.push(remote, branch, opt, cb)
 `git push <remote> <branch>`
-
-    defaults:
-    remote: 'origin'
-    branch: 'master'
-
-Options: Object
-
-`.push('origin', 'master', {args: 'options'}).end()`
 
 Pushes changes to remote repo
 
-The stream `end` is required.
+`remote`: String, name of remote, default: `origin`
 
-### git.tag()
+`branch`: String, branch, default: `master`
+
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+
+`cb`: function, passed err if any
+
+```js
+git.push('origin', 'master', function (err) {
+  //if (err) ...
+});
+```
+
+### git.tag(version, message, opt, cb)
 `git tag -a/s <version> -m <message>`
-
-Options: Object
 
 Tags repo with release version
 
-if options.signed is set to true, the tag will use the git secure key:
+`version`: String, tag name
 
+`message`: String, tag message
+
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+
+`cb`: function, passed err if any
+
+```js
+git.tag('v1.1.1', 'Version message', function (err) {
+  //if (err) ...
+});
+```
+
+if options.signed is set to true, the tag will use the git secure key:
 `git.tag('v1.1.1', 'Version message with signed key', {signed: true});`
 
-
-### git.branch()
+### git.branch(branch, opt, cb)
 `git branch <new branch name>`
 
-Options: Object
+Creates a new branch but doesn't switch to it
 
-`.branch('newBranch', {args: "options"})`
+(Want to switch as you create? Use `git.checkout({args:'-b'})`.)
 
-Creates a new branch
+`branch`: String, branch
 
-### git.checkout()
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+
+`cb`: function, passed err if any
+
+```js
+git.branch('development', function (err) {
+  //if (err) ...
+});
+```
+
+### git.checkout(branch, opt, cb)
 `git checkout <new branch name>`
 
-gulp.src: required
+Checkout a new branch with files
 
-Options: Object
+`branch`: String, branch
 
-`.checkout('newBranch', {args: "options"})`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
 
-Checkouts a new branch with files
+`cb`: function, passed err if any
 
-### git.merge()
+```js
+git.checkout('development', function (err) {
+  //if (err) ...
+});
+```
+
+If you want to create a branch and switch to it:
+
+```js
+git.checkout('development', {args:'-b'}, function (err) {
+  //if (err) ...
+});
+```
+
+If you want to checkout files (e.g. revert them) use git.checkoutFiles:
+
+```js
+gulp.src('./*')
+  .pipe(git.checkoutFiles());
+```
+
+### git.checkoutFiles(opt)
+`git checkout <list of files>`
+
+Checkout (e.g. reset) files
+
+`opt`: Object (optional) `{args: 'options'}`
+
+```js
+gulp.src('./*')
+  .pipe(git.checkoutFiles());
+```
+
+### git.merge(branch, opt, cb)
 `git merge <branch name> <options>`
 
-Options: Object
+Merges a branch into the current branch
 
-`.merge('newBranch', {args: "options"})`
+`branch`: String, source branch
 
-Merges a branch into master
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+
+`cb`: function, passed err if any
+
+```js
+git.merge('development', function (err) {
+  //if (err) ...
+});
+```
 
 ### git.rm()
 `git rm <file> <options>`
 
-gulp.src: required
-
-Options: Object
-
-`.rm({args: "options"})`
-
 Removes a file from git and deletes it
 
-### git.reset()
+`opt`: Object (optional) `{args: 'options'}`
+
+```js
+gulp.src('./*')
+  .pipe(git.commit('commit message'));
+});
+```
+
+### git.reset(commit, opt, cb)
 `git reset <SHA> <options>`
 
-Options: Object
+Resets working directory to specified commit hash
 
-`.reset('850f500f53f54', {args: "options"})`
+`commit`: String, commit hash or reference
 
-Resets a git commit
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
 
-### git.clone()
-`git clone <remote> <options>`
+`cb`: function, passed err if any
 
-Options: Object
+```js
+git.reset('HEAD' {args:'--hard'}, function (err) {
+  //if (err) ...
+});
+```
 
-`.clone('https://remote.git', {args: "options"})`
+### git.revParse(opt, cb)
+`git rev-parse <options>`
 
-Clones a remote repo
+Get details about the repository
 
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+
+`cb`: function, passed err if any and command stdout
+
+```js
+git.revParse({args:'--short HEAD'}, function (err, hash) {
+  //if (err) ...
+  console.log('current git hash: '+hash);
+});
+```
 
 ***
 
