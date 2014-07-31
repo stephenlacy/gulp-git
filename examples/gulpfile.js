@@ -85,6 +85,13 @@ gulp.task('rm', function(){
   .pipe(git.rm({args: '-f'}));
 });
 
+gulp.task('addSubmodule', function(){
+  git.addSubmodule('https://github.com/stevelacy/git-test', 'git-test', {args: '-b master'});
+});
+
+gulp.task('updateSubmodules', function(){
+  git.updateSubmodule({args: '--init'});
+});
 
 // default gulp task
 

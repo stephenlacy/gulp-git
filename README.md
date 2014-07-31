@@ -173,6 +173,14 @@ gulp.task('rm', function(){
     .pipe(git.rm());
 });
 
+gulp.task('addSubmodule', function(){
+  git.addSubmodule('https://github.com/stevelacy/git-test', 'git-test', { args: '-b master'});
+});
+
+gulp.task('updateSubmodules', function(){
+  git.updateSubmodule({ args: '--init' });
+});
+
 // Run gulp's default task
 gulp.task('default',['add']);
 ```
@@ -437,12 +445,27 @@ Get details about the repository
 
 `cb`: function, passed err if any and command stdout
 
+
 ```js
 git.revParse({args:'--short HEAD'}, function (err, hash) {
   //if (err) ...
   console.log('current git hash: '+hash);
 });
 ```
+
+### git.addSubmodule()
+`git submodule add <options> <repository> <path>`
+
+Options: Object
+
+`.addSubmodule('https://repository.git', 'path', {args: "options"})`
+
+### git.updateSubmodule()
+`git submodule update <options>`
+
+Options: Object
+
+`.updateSubmodule({args: "options"})`
 
 ***
 
