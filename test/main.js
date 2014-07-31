@@ -171,10 +171,45 @@ describe('gulp-git', function() {
       gitS.end();
     });
 
+    describe('submodule', function(){
+      it('should add a submodule to the git repo', function(done){
+        git.addSubmodule('https://github.com/stevelacy/git-test', 'testSubmodule', { cwd: "./test/" }, function(){
+          should.exist('test/.gitmodules');
+          setTimeout(function(){
+            String(fs.readFileSync('test/.gitmodules').toString('utf8')).should.match(/https:\/\/github.com\/stevelacy\/git-test/);
+          }, 100);
+          should.exist('test/testSubmodule');
+          should.exist('test/testSubmodule/.git/');
+          done();
+        });
+      });
+
+      it('should update submodules', function(done){
+        git.updateSubmodule({ cwd: "./test/" }, function(){
+          should.exist('test/testSubmodule');
+          should.exist('test/testSubmodule/.git/');
+          done();
+        });
+      });
+
+      after(function(done){
+        rimraf('test/testSubmodule', function(err){
+          if(err) return err;
+          done();
+        });
+      });
+    });
+
   });
 
   after(function(done){
-    rimraf('test/.git', done);
+    rimraf('test/.git', function(err){
+      if(err) return err;
+      fs.unlink('test/.gitmodules', function(err){
+        if(err) return err;
+        done();
+      });
+    });
   });
 
 });

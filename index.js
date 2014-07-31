@@ -13,5 +13,7 @@ module.exports = {
   add: require('./lib/add'),
   tag: require('./lib/tag'),
   rm: require('./lib/rm'),
-  revParse: require('./lib/revParse')
+  revParse: require('./lib/revParse'),
+  addSubmodule: require('./lib/addSubmodule'),
+  updateSubmodule: require('./lib/updateSubmodule')
 };
