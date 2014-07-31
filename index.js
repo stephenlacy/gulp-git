@@ -1,19 +1,2 @@
-module.exports = {
-  addRemote: require('./lib/addRemote'),
-  checkout: require('./lib/checkout'),
-  checkoutFiles: require('./lib/checkoutFiles'),
-  commit: require('./lib/commit'),
-  branch: require('./lib/branch'),
-  merge: require('./lib/merge'),
-  reset: require('./lib/reset'),
-  clone: require('./lib/clone'),
-  init: require('./lib/init'),
-  push: require('./lib/push'),
-  pull: require('./lib/pull'),
-  add: require('./lib/add'),
-  tag: require('./lib/tag'),
-  rm: require('./lib/rm'),
-  revParse: require('./lib/revParse'),
-  addSubmodule: require('./lib/addSubmodule'),
-  updateSubmodule: require('./lib/updateSubmodule')
-};
+var requireDir = require('require-dir');
+module.exports = requireDir('./lib');

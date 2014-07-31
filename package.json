@@ -10,8 +10,9 @@
   "author": "Steve Lacy me@slacy.me (slacy.me)",
   "main": "./index.js",
   "dependencies": {
-    "gulp-util": "~2.2.14",
     "any-shell-escape": "^0.1.1",
+    "gulp-util": "~2.2.14",
+    "require-dir": "^0.1.0",
     "through2": "^0.4.1"
   },
   "devDependencies": {
