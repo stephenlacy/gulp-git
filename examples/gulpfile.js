@@ -22,7 +22,7 @@ gulp.task('add', function(){
 
 gulp.task('commit', function(){
   gulp.src('./*', {buffer:false})
-  .pipe(git.commit('initial commit', {args: "-v"}));
+  .pipe(git.commit('initial commit'));
 });
 
 // Commit files with arguments
@@ -31,46 +31,52 @@ gulp.task('commitopts', function(){
   .pipe(git.commit('initial commit', {args: "-v"}));
 });
 
-// Commit files with templates
-gulp.task('committemplate', function(){
-  gulp.src('./*')
-  .pipe(git.commit('initial commit file: <%= file.path%>', {args: "-v"}));
-});
-
 
 // Add remote
 
 gulp.task('remote', function(){
-  git.addRemote('origin', 'https://github.com/stevelacy/git-test');
+  git.addRemote('origin', 'https://github.com/stevelacy/git-test', function (err) {
+    //if (err) ...
+  });
 });
 
 
 // Push to remote repo
 
 gulp.task('push', function(){
-  git.push('origin', 'master').end();
+  git.push('origin', 'master', function (err) {
+    //if (err) ...
+  });
 });
 
 
 // Pull from remote repo
 
 gulp.task('pull', function(){
-  git.pull('origin', 'master');
+  git.pull('origin', 'master', function (err) {
+    //if (err) ...
+  });
 });
 
 // Tag the repo
 
 gulp.task('tag', function(){
-  git.tag('v1.1.1', 'Version message');
+  git.tag('v1.1.1', 'Version message', function (err) {
+    //if (err) ...
+  });
 });
 
 // Tag the repo WITH signed key
 gulp.task('tagsec', function(){
-  git.tag('v1.1.1', 'Version message with signed key', true);
+  git.tag('v1.1.1', 'Version message with signed key', {signed:true}, function (err) {
+    //if (err) ...
+  });
 });
 
 gulp.task('push-tag', function(){
-  git.push('origin', 'v1.1.1').end();
+  git.push('origin', 'v1.1.1', function (err) {
+    //if (err) ...
+  });
 });
 
 
