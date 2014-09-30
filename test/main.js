@@ -214,6 +214,35 @@ describe('gulp-git', function() {
       });
     });
 
+    describe('status', function(){
+
+      it('should git status -s', function(done){
+
+        var fakeFile = new gutil.File({
+          base: 'test/',
+          cwd: 'test/',
+          path: path.join(__dirname, 'test.status.short.js'),
+          contents: new Buffer(fs.readFileSync('test/test.js'))
+        });
+
+        fs.openSync(fakeFile.path, 'w');
+
+        git.status({ args : '-s'}, function(stdout){
+          fs.exists(fakeFile.path, function(exists){
+            exists.should.be.true;
+            var files = stdout.split('\n').slice(0,-1);
+            var lastFile = files.slice(-1)[0];
+            var fakeRelativePath = path.relative(
+              process.cwd(), fakeFile.path
+            );
+            lastFile.should.match('?? ' + fakeRelativePath);
+            rimraf.sync(fakeFile.path);
+            done();
+          });
+        });
+      });
+    });
+
     describe('rm', function(){
       it('should rm multiple files', function(done) {
         var fakeFiles = [];
@@ -262,9 +291,6 @@ describe('gulp-git', function() {
         gitS.end();
       });
     });
-
-
-
 
   });
 
