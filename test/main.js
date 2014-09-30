@@ -306,8 +306,7 @@ describe('gulp-git', function() {
         var fakeFile = new gutil.File({
           base: 'test/',
           cwd: 'test/',
-          path: testFile,
-          contents: new Buffer(fs.readFileSync('test/test.js'))
+          path: testFile
         });
         var gitS = git.rm();
         gitS.once('data', function (newFile) {
