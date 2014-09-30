@@ -216,36 +216,6 @@ describe('gulp-git', function() {
 
     describe('status', function(){
 
-      it('should git status', function(done){
-        var fakeFile = new gutil.File({
-          base: 'test/',
-          cwd: 'test/',
-          path: path.join(__dirname, 'test.status.js'),
-          contents: new Buffer(fs.readFileSync('test/test.js'))
-        });
-
-        fs.openSync(fakeFile.path, 'w');
-
-        git.status(function(stdout){
-          fs.exists(fakeFile.path, function(exists){
-            exists.should.be.true;
-
-            var fakeFilePath = path.relative(
-              process.cwd(), fakeFile.path
-            );
-
-            var fileStatus = stdout.match(/#\t(.*)\n[a-z]/)[1];
-
-            fileStatus.should.be.equal(fakeFilePath);
-
-            rimraf(fakeFile.path, function(err){
-              if(err) return err;
-              done();
-            });
-          });
-        });
-      });
-
       it('should git status -s', function(done){
 
         var fakeFile = new gutil.File({
