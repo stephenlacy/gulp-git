@@ -214,6 +214,65 @@ describe('gulp-git', function() {
       });
     });
 
+    describe('status', function(){
+
+      it('should git status', function(done){
+        var fakeFile = new gutil.File({
+          base: 'test/',
+          cwd: 'test/',
+          path: path.join(__dirname, 'test.status.js'),
+          contents: new Buffer(fs.readFileSync('test/test.js'))
+        });
+
+        fs.openSync(fakeFile.path, 'w');
+
+        git.status(function(stdout){
+          fs.exists(fakeFile.path, function(exists){
+            exists.should.be.true;
+
+            var fakeFilePath = path.relative(
+              process.cwd(), fakeFile.path
+            );
+
+            var fileStatus = stdout.match(/#\t(.*)\n[a-z]/)[1];
+
+            fileStatus.should.be.equal(fakeFilePath);
+
+            rimraf(fakeFile.path, function(err){
+              if(err) return err;
+              done();
+            });
+          });
+        });
+      });
+
+      it('should git status -s', function(done){
+
+        var fakeFile = new gutil.File({
+          base: 'test/',
+          cwd: 'test/',
+          path: path.join(__dirname, 'test.status.short.js'),
+          contents: new Buffer(fs.readFileSync('test/test.js'))
+        });
+
+        fs.openSync(fakeFile.path, 'w');
+
+        git.status({ args : '-s'}, function(stdout){
+          fs.exists(fakeFile.path, function(exists){
+            exists.should.be.true;
+            var files = stdout.split('\n').slice(0,-1);
+            var lastFile = files.slice(-1)[0];
+            var fakeRelativePath = path.relative(
+              process.cwd(), fakeFile.path
+            );
+            lastFile.should.match('?? ' + fakeRelativePath);
+            rimraf.sync(fakeFile.path);
+            done();
+          });
+        });
+      });
+    });
+
     describe('rm', function(){
       it('should rm multiple files', function(done) {
         var fakeFiles = [];
@@ -247,7 +306,8 @@ describe('gulp-git', function() {
         var fakeFile = new gutil.File({
           base: 'test/',
           cwd: 'test/',
-          path: testFile
+          path: testFile,
+          contents: new Buffer(fs.readFileSync('test/test.js'))
         });
         var gitS = git.rm();
         gitS.once('data', function (newFile) {
@@ -262,9 +322,6 @@ describe('gulp-git', function() {
         gitS.end();
       });
     });
-
-
-
 
   });
 
