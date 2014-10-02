@@ -16,7 +16,7 @@ module.exports = function(git, util){
           .toString('utf8')
           .should.match(/initial commit/);
         done();
-      }, 100);
+      }, 100);      
     });
   });
 };

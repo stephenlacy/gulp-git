@@ -29,7 +29,7 @@ module.exports = function(git, util){
     util.testFiles.slice(1).forEach(function(file){
       fakeFiles.push(new gutil.File(file));
     });
-    
+
     var opt = { args: '-f', cwd : 'test/repo' };
     var gitS = git.rm(opt);
     gitS.on('data', function (newFile) {
