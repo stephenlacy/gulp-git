@@ -14,13 +14,12 @@ module.exports = function(git, testFiles, testCommit){
     var url = 'https://github.com/stevelacy/git-test';
 
     git.addSubmodule(url, 'testSubmodule', opt, function(){
-      should.exist('test/repo/.gitmodules');
-      should.exist('test/repo/testSubmodule');
-      should.exist('test/repo/testSubmodule/.git/');
 
       fs.readFileSync('test/repo/.gitmodules')
         .toString('utf8')
-        .should.match(new RegExp(url));
+        .should.match(new RegExp(url.replace(/[\/]/g, '\\$&')));
+      should.exist('test/repo/testSubmodule');
+      should.exist('test/repo/testSubmodule/.git/');
       done();
     });
   });
@@ -31,6 +30,13 @@ module.exports = function(git, testFiles, testCommit){
     git.updateSubmodule(args, function(){
       should.exist('test/repo/testSubmodule');
       should.exist('test/repo/testSubmodule/.git/');
+      done();
+    });
+  });
+
+  after(function(done){
+    rimraf('test/testSubmodule', function(err){
+      if(err) return done(err);
       done();
     });
   });

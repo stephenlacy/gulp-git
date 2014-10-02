@@ -10,14 +10,12 @@ module.exports = function(git, util){
 
   it('should add files to the git repo', function(done) {
     var fakeFile = new gutil.File(util.testFiles[0]);
-
     var gitS = git.add();
     gitS.on('data', function(newFile){
       should.exist(newFile);
       should.exist('test/.git/objects/');
       done();
     });
-
     gitS.write(fakeFile);
     gitS.end();
   });
@@ -27,18 +25,15 @@ module.exports = function(git, util){
     util.testFiles.forEach(function(name){
       fakeFiles.push( new gutil.File(name) );
     });
-
     var gitS = git.add();
     gitS.on('data', function(newFile){
       should.exist(newFile);
       should.exist('test/.git/objects/');
     });
-      done();
-
     fakeFiles.forEach(function(file){
       gitS.write(file);
     });
-    gitS.end();
+    gitS.end(done);
   });
 
 };

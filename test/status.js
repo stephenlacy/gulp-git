@@ -12,17 +12,14 @@ module.exports = function(git, util){
 
     var opt = { args : '--porcelain', cwd : 'test/repo' };
     var fakeFile = new gutil.File(util.testFiles[0]);
+    var fakeRelative = '?? ' + path.relative(util.repo, fakeFile.path);
     fs.openSync(fakeFile.path, 'w');
 
     git.status(opt, function(stdout){
       fs.exists(fakeFile.path, function(exists){
-
         exists.should.be.true;
-        stdout
-          .split('\n')
-          .should
-          .containDeep(['?? ' + path.relative(util.repo, fakeFile.path) ]);
-
+        stdout.split('\n')
+          .should.containDeep([fakeRelative]);
         done();
       });
     });

@@ -17,9 +17,7 @@ module.exports = function(git, util){
   });
 
   it('should create new branch, checkout and return its name', function(done){
-
     var opt = { cwd: './test/repo/' };
-
     git.branch('anotherBranch', opt, function(){
       should.exist('test/repo/.git/refs/heads/anotherBranch');
       git.checkout('anotherBranch', opt, function(){
