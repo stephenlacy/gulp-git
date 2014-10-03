@@ -11,15 +11,15 @@
   "main": "./index.js",
   "dependencies": {
     "any-shell-escape": "^0.1.1",
-    "gulp-util": "~2.2.14",
+    "gulp-util": "^3.0.1",
     "require-dir": "^0.1.0",
-    "through2": "^0.4.1"
+    "through2": "^0.6.2"
   },
   "devDependencies": {
     "mocha": "*",
     "should": "*",
-    "jshint": "^2.5.1",
-    "rimraf": "~2.2.5"
+    "jshint": "^2.5.6",
+    "rimraf": "*"
   },
   "scripts": {
     "test": "mocha --reporter spec --timeout 6000 test/main.js && jshint ./index.js ./examples/. ./lib/. ./test/."
