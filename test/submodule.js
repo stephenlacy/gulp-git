@@ -10,7 +10,7 @@ module.exports = function(git, testFiles, testCommit){
 
   it('should add a submodule to the git repo', function(done){
 
-    var opt = { cwd: 'test/repo' };
+    var opt = {cwd: 'test/repo'};
     var url = 'https://github.com/stevelacy/git-test';
 
     git.addSubmodule(url, 'testSubmodule', opt, function(){
@@ -25,7 +25,7 @@ module.exports = function(git, testFiles, testCommit){
   });
 
   it('should update submodules', function(done){
-    var args = { cwd: 'test/repo' };
+    var args = {cwd: 'test/repo'};
 
     git.updateSubmodule(args, function(){
       should.exist('test/repo/testSubmodule');

@@ -10,7 +10,7 @@ module.exports = function(git, util){
 
   it('should git status --porcelain', function(done){
 
-    var opt = { args : '--porcelain', cwd : 'test/repo' };
+    var opt = {args: '--porcelain', cwd: 'test/repo'};
     var fakeFile = new gutil.File(util.testFiles[0]);
     var fakeRelative = '?? ' + path.relative(util.repo, fakeFile.path);
     fs.openSync(fakeFile.path, 'w');

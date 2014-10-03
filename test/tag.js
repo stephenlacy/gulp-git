@@ -14,7 +14,7 @@ module.exports = function(git, testFiles, testCommit){
   /*
   it('should tag a version of the repo', function(done) {
 
-    git.tag('v1.2.3', 'message', {cwd: "./test/"}, function(){
+    git.tag('v1.2.3', 'message', {cwd: "./test/"}, function() {
       should.exist('test/.git/refs/tags/v1.2.3');
       done();
     });

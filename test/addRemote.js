@@ -9,7 +9,7 @@ var gutil = require('gulp-util');
 module.exports = function(git, util){
 
   it('should add a Remote to the git repo', function(done) {
-    var opt = { cwd : './test/repo/' };
+    var opt = {cwd: './test/repo/'};
     var origin = 'https://github.com/stevelacy/git-test';
     git.addRemote('origin', origin, opt, function(){
       should.exist('./test/repo/.git/');

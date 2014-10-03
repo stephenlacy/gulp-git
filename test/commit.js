@@ -10,7 +10,7 @@ module.exports = function(git, util){
 
   it('should commit a file to the repo', function(done) {
     var fakeFile = util.testFiles[0];
-    var opt = { cwd : './test/repo/' };
+    var opt = {cwd: './test/repo/'};
     var gitS = git.commit('initial commit', opt);
     gitS.once('finish', function(){
       setTimeout(function(){

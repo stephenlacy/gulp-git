@@ -11,7 +11,7 @@ module.exports = function(git, util){
 
   beforeEach(function(done){
     var repo = 'git://github.com/stevelacy/gulp-git';
-    git.clone(repo, { args: './test/tmp' }, done);
+    git.clone(repo, {args: './test/tmp'}, done);
   });
 
   it('should have cloned project into tmp directory', function(){
