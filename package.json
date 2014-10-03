@@ -22,7 +22,7 @@
     "rimraf": "~2.2.5"
   },
   "scripts": {
-    "test": "mocha --reporter spec --timeout 6000 && jshint ./index.js ./examples/. ./lib/. ./test/."
+    "test": "mocha --reporter spec --timeout 6000 test/main.js && jshint ./index.js ./examples/. ./lib/. ./test/."
   },
   "engines": {
     "node": ">= 0.9.0"
