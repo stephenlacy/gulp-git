@@ -181,6 +181,13 @@ gulp.task('updateSubmodules', function(){
   git.updateSubmodule({ args: '--init' });
 });
 
+// Working tree status
+gulp.task('status', function(){
+  git.status({args: '--porcelain'}, function (err, stdout) {
+    if (err) throw err;
+  });
+});
+
 // Run gulp's default task
 gulp.task('default',['add']);
 ```
@@ -466,6 +473,21 @@ Options: Object
 Options: Object
 
 `.updateSubmodule({args: "options"})`
+
+### git.status(opt, cb)
+`git status <options>`
+
+Show the working tree status
+
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+
+`cb`: function (optional), passed err and command stdout
+
+```js
+git.status({args : '--porcelain'}, function (err, stdout) {
+  //if (err) ...
+});
+```
 
 ***
 
