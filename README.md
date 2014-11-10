@@ -495,6 +495,7 @@ Show the working tree status
 git.status({args : '--porcelain'}, function (err, stdout) {
   // if (err) ...
 });
+```
 
 ### git.exec(opt, cb)
 `git <options>`
@@ -502,6 +503,7 @@ git.status({args : '--porcelain'}, function (err, stdout) {
 Run other git actions that do not require a Vinyl.
 
 `opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+
 `cb`: function (optional), passed err and command stdout
 
 ```js
