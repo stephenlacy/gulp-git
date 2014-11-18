@@ -13,7 +13,7 @@
     "any-shell-escape": "^0.1.1",
     "gulp-util": "^3.0.1",
     "require-dir": "^0.1.0",
-    "through2": "^0.6.2"
+    "through2": "^0.6.3"
   },
   "devDependencies": {
     "mocha": "*",
