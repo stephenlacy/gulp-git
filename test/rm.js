@@ -23,10 +23,26 @@ module.exports = function(git, util){
     gitS.write(fakeFile);
     gitS.end();
   });
+  
+  it('should accept options via file.data', function(done) {
+    var fakeFile = new gutil.File(util.testFiles[1]);
+    fakeFile.data = {args: '-f', cwd: 'test/repo'};
+    var gitS = git.rm();
+    gitS.once('data', function (newFile) {
+      setTimeout(function(){
+        fs.exists('test/repo/'+newFile, function(exists) {
+          exists.should.be.false;
+        });
+        done();
+      }, 100);
+    });
+    gitS.write(fakeFile);
+    gitS.end();
+  });
 
   it('should rm multiple files', function(done) {
     var fakeFiles = [];
-    util.testFiles.slice(1).forEach(function(file){
+    util.testFiles.slice(2).forEach(function(file){
       fakeFiles.push(new gutil.File(file));
     });
 
