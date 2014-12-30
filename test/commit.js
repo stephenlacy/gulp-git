@@ -23,5 +23,39 @@ module.exports = function(git, util){
     gitS.write(fakeFile);
     gitS.end();
   });
+  
+  it('should accept a commit message via file.data', function(done) {
+    var fakeFile = util.testFiles[1];
+    fakeFile.data = {message: 'initial commit'};
+    var opt = {cwd: './test/repo/'};
+    var gitS = git.commit(opt);
+    gitS.once('finish', function(){
+      setTimeout(function(){
+        fs.readFileSync(util.testCommit)
+          .toString('utf8')
+          .should.match(/initial commit/);
+        done();
+      }, 100);
+    });
+    gitS.write(fakeFile);
+    gitS.end();
+  });
+  
+  
+  it('should accept all options via file.data', function(done) {
+    var fakeFile = util.testFiles[2];
+    fakeFile.data = {message: 'initial commit', cwd: './test/repo/'};
+    var gitS = git.commit();
+    gitS.once('finish', function(){
+      setTimeout(function(){
+        fs.readFileSync(util.testCommit)
+          .toString('utf8')
+          .should.match(/initial commit/);
+        done();
+      }, 100);
+    });
+    gitS.write(fakeFile);
+    gitS.end();
+  });
 
 };
