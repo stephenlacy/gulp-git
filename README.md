@@ -206,7 +206,7 @@ gulp.task('default',['add']);
 
 Creates an empty git repo
 
-`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true}`
 
 `cb`: function, passed err if any
 
@@ -223,7 +223,7 @@ Clones a remote repo for the first time
 
 `remote`: String, remote url
 
-`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true}`
 
 `cb`: function, passed err if any
 
@@ -238,7 +238,7 @@ git.clone('https://remote.git', function (err) {
 
 Adds files to repo
 
-`opt`: Object (optional) `{args: 'options'}`
+`opt`: Object (optional) `{args: 'options', quiet: true}`
 
 ```js
 gulp.src('./*')
@@ -253,7 +253,7 @@ Commits changes to repo
 
 `message`: String, commit message
 
-`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true}`
 
 ```js
 gulp.src('./*')
@@ -270,7 +270,7 @@ Adds remote repo url
 
 `url`: String, url of remote
 
-`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true}`
 
 `cb`: function, passed err if any
 
@@ -289,7 +289,7 @@ Pulls changes from remote repo
 
 `branch`: String, branch, default: `master`
 
-`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true}`
 
 `cb`: function, passed err if any
 
@@ -308,7 +308,7 @@ Pushes changes to remote repo
 
 `branch`: String, branch, default: `master`
 
-`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true}`
 
 `cb`: function, passed err if any
 
@@ -327,7 +327,7 @@ Tags repo with release version
 
 `message`: String, tag message
 
-`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true}`
 
 `cb`: function, passed err if any
 
@@ -349,7 +349,7 @@ Creates a new branch but doesn't switch to it
 
 `branch`: String, branch
 
-`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true}`
 
 `cb`: function, passed err if any
 
@@ -366,7 +366,7 @@ Checkout a new branch with files
 
 `branch`: String, branch
 
-`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true}`
 
 `cb`: function, passed err if any
 
@@ -396,7 +396,7 @@ gulp.src('./*')
 
 Checkout (e.g. reset) files
 
-`opt`: Object (optional) `{args: 'options'}`
+`opt`: Object (optional) `{args: 'options', quiet: true}`
 
 ```js
 gulp.src('./*')
@@ -410,7 +410,7 @@ Merges a branch into the current branch
 
 `branch`: String, source branch
 
-`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true}`
 
 `cb`: function, passed err if any
 
@@ -425,7 +425,7 @@ git.merge('development', function (err) {
 
 Removes a file from git and deletes it
 
-`opt`: Object (optional) `{args: 'options'}`
+`opt`: Object (optional) `{args: 'options', quiet: true}`
 
 ```js
 gulp.src('./*')
@@ -440,7 +440,7 @@ Resets working directory to specified commit hash
 
 `commit`: String, commit hash or reference
 
-`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true}`
 
 `cb`: function, passed err if any
 
@@ -455,7 +455,7 @@ git.reset('HEAD' {args:'--hard'}, function (err) {
 
 Get details about the repository
 
-`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true}`
 
 `cb`: function, passed err if any and command stdout
 
@@ -472,14 +472,14 @@ git.revParse({args:'--short HEAD'}, function (err, hash) {
 
 Options: Object
 
-`.addSubmodule('https://repository.git', 'path', {args: "options"})`
+`.addSubmodule('https://repository.git', 'path', {args: "options", quiet: true})`
 
 ### git.updateSubmodule()
 `git submodule update <options>`
 
 Options: Object
 
-`.updateSubmodule({args: "options"})`
+`.updateSubmodule({args: "options", quiet: true})`
 
 
 ### git.status(opt, cb)
@@ -487,7 +487,7 @@ Options: Object
 
 Show the working tree status
 
-`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true}`
 
 `cb`: function (optional), passed err and command stdout
 
@@ -502,7 +502,7 @@ git.status({args : '--porcelain'}, function (err, stdout) {
 
 Run other git actions that do not require a Vinyl.
 
-`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path'}`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true}`
 
 `cb`: function (optional), passed err and command stdout
 
