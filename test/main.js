@@ -1,3 +1,5 @@
+'use strict';
+
 /* global describe, it, after, before, afterEach, beforeEach */
 
 var path = require('path');
