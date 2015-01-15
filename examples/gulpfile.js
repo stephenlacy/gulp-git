@@ -1,7 +1,7 @@
+'use strict';
+
 var gulp = require('gulp');
 var git = require('../');
-
-
 
 // Init a git repo
 
@@ -28,7 +28,7 @@ gulp.task('commit', function(){
 // Commit files with arguments
 gulp.task('commitopts', function(){
   gulp.src('./*')
-  .pipe(git.commit('initial commit', {args: "-v"}));
+  .pipe(git.commit('initial commit', {args: '-v'}));
 });
 
 
