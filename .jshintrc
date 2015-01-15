@@ -1,25 +1,20 @@
 {
-  "bitwise": true
-  , "camelcase": true
-  , "eqeqeq": true
-  , "immed": true
-
-  , "latedef": true
-  , "newcap": true
-  , "noarg": true
-  , "freeze": true
-
-  , "regexp": false
-  , "undef": true
-  , "unused": false
-  , "trailing": true
-
-  , "asi"       : false
-  , "boss"      : false
-  , "eqnull"    : true
-  , "expr"      : true
-  , "regexdash" : false
-  , "smarttabs" : false
-
-  , "node": true
+  "camelcase": true,
+  "eqeqeq": true,
+  "freeze": true,
+  "indent": 2,
+  "newcap": false,
+  "quotmark": "single",
+  "maxdepth": 5,
+  "maxstatements": 50,
+  "eqnull": true,
+  "funcscope": true,
+  "strict": true,
+  "undef": true,
+  "unused": false,
+  "node": true,
+  "mocha": true,
+  "expr": true,
+  "laxbreak": true,
+  "validthis": true
 }
