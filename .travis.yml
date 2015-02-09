@@ -4,3 +4,6 @@ node_js:
   - "iojs"
   - "0.10"
   - "0.12"
+before_install:
+  -  git config --global user.email "you@example.com"
+  -  git config --global user.name "Your Name"
