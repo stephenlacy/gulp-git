@@ -1,7 +1,5 @@
 'use strict';
 
-/* global describe, it, after, before, afterEach, beforeEach */
-
 var fs = require('fs');
 var path = require('path');
 var rimraf = require('rimraf');
