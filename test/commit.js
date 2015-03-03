@@ -26,4 +26,17 @@ module.exports = function(git, util){
     gitS.end();
   });
 
+  it('should fire an end event', function(done) {
+    var fakeFile = util.testFiles[2];
+    var opt = {cwd: './test/repo/'};
+    var gitS = git.commit('initial commit', opt);
+
+    gitS.on('end', function() {
+      done();
+    });
+
+    gitS.write(fakeFile);
+    gitS.end();
+  });
+
 };
