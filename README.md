@@ -109,6 +109,21 @@ gulp.task('pull', function(){
   });
 });
 
+// Run git fetch
+// Fetch refs from all remotes
+gulp.task('fetch', function(){
+  git.fetch('', '', {args: '--all'}, function (err) {
+    if (err) throw err;
+  });
+});
+
+// Run git fetch
+// Fetch refs from origin
+gulp.task('fetch', function(){
+  git.fetch('origin', '', function (err) {
+    if (err) throw err;
+  });
+});
 
 // Clone a remote repo
 gulp.task('clone', function(){
@@ -276,6 +291,25 @@ Adds remote repo url
 
 ```js
 git.addRemote('origin', 'git-repo-url', function (err) {
+  //if (err) ...
+});
+```
+
+### git.fetch(remote, branch, opt, cb)
+`git fetch <remote> <branch>`
+
+Fetches refs and objects from remote repo
+
+`remote`: String, name of remote, default: `origin`
+
+`branch`: String, branch, default: ``
+
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true}`
+
+`cb`: function, passed err if any
+
+```js
+git.fetch('origin', '', function (err) {
   //if (err) ...
 });
 ```
