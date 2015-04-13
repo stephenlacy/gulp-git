@@ -74,6 +74,15 @@ gulp.task('commit', function(){
     .pipe(git.commit('initial commit', {args: '-A --amend -s'}));
 });
 
+// Run git commit without checking for a message using raw arguments
+gulp.task('commit', function(){
+  return gulp.src('./git-test/*')
+    .pipe(git.commit(undefined, { 
+      args: '-m "initial commit"',
+      disableMessageRequirement: true
+    }));
+});
+
 // Run git remote add
 // remote is the remote repo
 // repo is the https url of the repo
@@ -268,7 +277,7 @@ Commits changes to repo
 
 `message`: String, commit message
 
-`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true}`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true, disableMessageRequirement: false}`
 
 ```js
 gulp.src('./*')

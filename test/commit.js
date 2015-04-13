@@ -37,4 +37,20 @@ module.exports = function(git, util){
     gitS.end();
   });
 
+  it('should commit a file to the repo using raw arguments only', function(done) {
+    var fakeFile = util.testFiles[3];
+    var opt = {cwd: './test/repo/', args:'-m "initial commit"', disableMessageRequirement: true};
+    var gitS = git.commit(undefined, opt);
+    gitS.once('finish', function(){
+      setTimeout(function(){
+        fs.readFileSync(util.testCommit)
+          .toString('utf8')
+          .should.match(/initial commit/);
+        done();
+      }, 100);
+    });
+    gitS.write(fakeFile);
+    gitS.end();
+  });
+
 };

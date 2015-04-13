@@ -31,6 +31,14 @@ gulp.task('commitopts', function(){
   .pipe(git.commit('initial commit', {args: '-v'}));
 });
 
+// Commit files using raw arguments, without message checking
+gulp.task('commitraw', function(){
+  gulp.src('./*')
+  .pipe(git.commit(undefined, { 
+    args: '-m "initial commit"',
+    disableMessageRequirement: true
+  }));
+});
 
 // Add remote
 
