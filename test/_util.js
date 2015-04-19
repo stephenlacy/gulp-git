@@ -35,12 +35,27 @@ var testFiles = (function(){
   return testFiles;
 }).call(this);
 
+var testOptionsFiles = (function(){
+  var testFiles = [];
+  for (var i = 0; i < 10; i++) {
+    testFiles[i] = {
+      base: 'test/repo',
+      cwd: 'test/repo',
+      path: __dirname + '/repo/test.options.' + i + '.js',
+      contents: new Buffer(fileContents())
+    };
+    fs.openSync(testFiles[i].path, 'w');
+  }
+  return testFiles;
+}).call(this);
+
 
 module.exports = {
   repo: repo,
   fileContents: fileContents(),
   testCommit: path.join(repo, '.git', 'COMMIT_EDITMSG'),
   testFiles: testFiles,
+  testOptionsFiles: testOptionsFiles,
   testSuite: function(){
     var testSuite = fs.readdirSync(__dirname);
     var testFirst = [

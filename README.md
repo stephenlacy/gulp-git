@@ -83,6 +83,15 @@ gulp.task('commit', function(){
     }));
 });
 
+// Run git commit without appending a path to the commits
+gulp.task('commit', function(){
+  return gulp.src('./git-test/*')
+    .pipe(git.commit('initial commit', {
+      disableAppendPaths: true
+    }));
+});
+
+
 // Run git remote add
 // remote is the remote repo
 // repo is the https url of the repo
@@ -277,7 +286,7 @@ Commits changes to repo
 
 `message`: String, commit message
 
-`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true, disableMessageRequirement: false}`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true, disableMessageRequirement: false, disableAppendPaths: false}`
 
 ```js
 gulp.src('./*')
