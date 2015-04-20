@@ -5,6 +5,7 @@ var path = require('path');
 var rimraf = require('rimraf');
 var should = require('should');
 var gutil = require('gulp-util');
+var exec = require('child_process').exec;
 
 module.exports = function(git, util){
 
@@ -53,4 +54,23 @@ module.exports = function(git, util){
     gitS.end();
   });
 
+  it('should commit a file to the repo when appending paths is disabled', function(done) {
+    var fakeFile = util.testOptionsFiles[4];
+    exec('git add ' + fakeFile.path, {cwd: './test/repo/'},
+      function (error, stdout, stderr) {
+        var opt = {cwd: './test/repo/', disableAppendPaths: true};
+        var gitS = git.commit('initial commit', opt);
+        gitS.on('end', function(err) {
+          if(err) {console.error(err); }
+          setTimeout(function(){
+            fs.readFileSync(util.testCommit)
+              .toString('utf8')
+              .should.match(/initial commit/);
+            done();
+          }, 100);
+        });
+        gitS.write(fakeFile);
+        gitS.end();
+    });
+  });
 };
