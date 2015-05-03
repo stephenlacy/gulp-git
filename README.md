@@ -8,7 +8,7 @@
 </tr>
 <tr>
 <td>Description</td>
-<td>Git plugin for Gulp (gulpjs.com)</td>
+<td>Git plugin for gulp (gulpjs.com)</td>
 </tr>
 <tr>
 <td>Node Version</td>
