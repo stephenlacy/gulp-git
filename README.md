@@ -554,7 +554,7 @@ git.status({args : '--porcelain'}, function (err, stdout) {
 
 Run other git actions that do not require a Vinyl.
 
-`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true}`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', maxBuffer: 200 * 1024, quiet: true}`
 
 `cb`: function (optional), passed err and command stdout
 
