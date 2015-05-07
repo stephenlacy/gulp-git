@@ -73,4 +73,25 @@ module.exports = function(git, util){
         gitS.end();
     });
   });
+
+  it('should commit a file to the repo when passing multiple messages', function(done) {
+    var fakeFile = util.testOptionsFiles[5];
+    exec('git add ' + fakeFile.path, {cwd: './test/repo/'},
+      function (error, stdout, stderr) {
+        var opt = {cwd: './test/repo/', disableAppendPaths: true};
+        var gitS = git.commit(['initial commit', 'additional message'], opt);
+        gitS.on('end', function(err) {
+          if(err) {console.error(err); }
+          setTimeout(function(){
+            var result = fs.readFileSync(util.testCommit)
+              .toString('utf8');
+            result.should.match(/initial commit/);
+            result.should.match(/additional message/);
+            done();
+          }, 100);
+        });
+        gitS.write(fakeFile);
+        gitS.end();
+    });
+  });
 };

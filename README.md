@@ -91,6 +91,12 @@ gulp.task('commit', function(){
     }));
 });
 
+// Run git commit, passing multiple messages as if calling
+// git commit -m "initial commit" -m "additional message"
+gulp.task('commit', function(){
+  return gulp.src('./git-test/*')
+    .pipe(git.commit(['initial commit', 'additional message']));
+});
 
 // Run git remote add
 // remote is the remote repo

@@ -40,6 +40,12 @@ gulp.task('commitraw', function(){
   }));
 });
 
+// Commit files using raw arguments, without message checking
+gulp.task('commitmulti', function(){
+  gulp.src('./*')
+  .pipe(git.commit(['initial commit', 'additional message']));
+});
+
 // Add remote
 
 gulp.task('remote', function(){
