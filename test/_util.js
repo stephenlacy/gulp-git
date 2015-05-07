@@ -6,7 +6,6 @@ var rimraf = require('rimraf');
 var should = require('should');
 var gutil = require('gulp-util');
 
-
 var repo = path.join(__dirname, 'repo');
 
 var fileContents = function(){

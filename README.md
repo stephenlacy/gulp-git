@@ -77,7 +77,7 @@ gulp.task('commit', function(){
 // Run git commit without checking for a message using raw arguments
 gulp.task('commit', function(){
   return gulp.src('./git-test/*')
-    .pipe(git.commit(undefined, { 
+    .pipe(git.commit(undefined, {
       args: '-m "initial commit"',
       disableMessageRequirement: true
     }));

@@ -8,7 +8,6 @@ var gutil = require('gulp-util');
 
 module.exports = function(git, util){
 
-
   beforeEach(function(done){
     var repo = 'git://github.com/stevelacy/gulp-git';
     git.clone(repo, {args: './test/tmp'}, done);

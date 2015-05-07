@@ -34,7 +34,7 @@ gulp.task('commitopts', function(){
 // Commit files using raw arguments, without message checking
 gulp.task('commitraw', function(){
   gulp.src('./*')
-  .pipe(git.commit(undefined, { 
+  .pipe(git.commit(undefined, {
     args: '-m "initial commit"',
     disableMessageRequirement: true
   }));
