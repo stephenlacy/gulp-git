@@ -27,17 +27,12 @@
   "engines": {
     "node": ">= 0.9.0"
   },
+  "license": "MIT",
   "keywords": [
     "gulp",
     "git",
     "gulpgit",
     "gulpplugin",
     "gulp-plugin"
-  ],
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://github.com/stevelacy/gulp-git/raw/master/LICENSE"
-    }
   ]
 }
