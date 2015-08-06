@@ -101,8 +101,16 @@ gulp.task('commit', function(){
 // Run git remote add
 // remote is the remote repo
 // repo is the https url of the repo
-gulp.task('remote', function(){
+gulp.task('addremote', function(){
   git.addRemote('origin', 'https://github.com/stevelacy/git-test', function (err) {
+    if (err) throw err;
+  });
+});
+
+// Run git remote remove
+// remote is the remote repo
+gulp.task('removeremote', function(){
+  git.removeRemote('origin', function (err) {
     if (err) throw err;
   });
 });
@@ -315,6 +323,23 @@ Adds remote repo url
 
 ```js
 git.addRemote('origin', 'git-repo-url', function (err) {
+  //if (err) ...
+});
+```
+
+### git.removeRemote(remote, opt, cb)
+`git remote remove <remote>`
+
+Removes remote repo url
+
+`remote`: String, name of remote
+
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true}`
+
+`cb`: function, passed err if any
+
+```js
+git.removeRemote('origin', function (err) {
   //if (err) ...
 });
 ```
