@@ -330,7 +330,7 @@ git.addRemote('origin', 'git-repo-url', function (err) {
 ### git.removeRemote(remote, opt, cb)
 `git remote remove <remote>`
 
-Removes remote repo url
+Removes remote repo
 
 `remote`: String, name of remote
 
