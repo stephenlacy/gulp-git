@@ -58,7 +58,7 @@ module.exports = {
   testSuite: function(){
     var testSuite = fs.readdirSync(__dirname);
     var testFirst = [
-      'clone.js', 'init.js', 'add.js', 'commit.js'
+      'clone.js', 'init.js', 'add.js', 'commit.js', 'stash.js'
     ];
 
     // use it also to omit _main & _util files
