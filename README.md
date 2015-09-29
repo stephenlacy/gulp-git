@@ -242,6 +242,13 @@ gulp.task('log', function(){
   });
 });
 
+// Git clean files
+gulp.task('clean', function() {
+  git.clean({ args: '-f' }, function (err) {
+    if(err) throw err;
+  });
+});
+
 // Run gulp's default task
 gulp.task('default',['add']);
 ```
@@ -594,6 +601,17 @@ git.exec({args : 'log --follow index.js'}, function (err, stdout) {
   //if (err) ...
 });
 ```
+
+### git.clean(paths, opt, cb)
+`git clean <options>`
+
+Remove untracked files from the working tree
+
+`paths`: String (optional), paths to be affected by clean operation
+
+`opt`: Object (optional), `{args: 'options', cwd: '/cwd/path', quiet: true}`
+
+`cb`: function (optional), passed err if any
 
 ***
 
