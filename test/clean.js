@@ -1,8 +1,9 @@
-/* global beforeEach, it */
+/* global beforeEach, it, afterEach */
 'use strict';
 
 var fs = require('fs'),
   should = require('should'),
+  rimraf = require('rimraf'),
   exec = require('child_process').exec;
   
 module.exports = function (git, util) {
@@ -27,6 +28,13 @@ module.exports = function (git, util) {
 					done(new Error("Failed to remove file"));
 				});
 			});
+		});
+	});
+	
+	afterEach(function(done){
+		rimraf('./test/tmp', function(err){
+			if(err) return done(err);
+			done();
 		});
 	});
 };
