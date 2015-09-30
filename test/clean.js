@@ -25,7 +25,7 @@ module.exports = function (git, util) {
 				fs.stat(filePath, function (err, stats) {
 					if(err)
 						return done();
-					done(new Error("Failed to remove file"));
+					done(new Error('Failed to remove file'));
 				});
 			});
 		});
