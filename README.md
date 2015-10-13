@@ -164,6 +164,12 @@ gulp.task('clone', function(){
   });
 });
 
+// Clone remote repo to sub folder ($CWD/sub/folder/git-test)
+gulp.task('clonesub', function() {
+  git.clone('https://github.com/stevelacy/git-test', {args: './sub/folder'}, function(err) {
+    // handle err
+  });
+});
 
 // Tag the repo with a version
 gulp.task('tag', function(){
@@ -283,6 +289,12 @@ Clones a remote repo for the first time
 
 ```js
 git.clone('https://remote.git', function (err) {
+  //if (err) ...
+});
+```
+A desination folder or subfolder can be set with `args: '<destination>'`
+```
+git.clone('https://remote.git', {args: './sub/folder'} function (err) {
   //if (err) ...
 });
 ```

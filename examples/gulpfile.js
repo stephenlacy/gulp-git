@@ -46,6 +46,20 @@ gulp.task('commitmulti', function(){
   .pipe(git.commit(['initial commit', 'additional message']));
 });
 
+// Clone remote repo to current directory ($CWD/git-test)
+gulp.task('clone', function() {
+  git.clone('https://github.com/stevelacy/git-test', function(err) {
+    // handle err
+  });
+});
+
+// Clone remote repo to sub folder ($CWD/sub/folder/git-test)
+gulp.task('clonesub', function() {
+  git.clone('https://github.com/stevelacy/git-test', {args: './sub/folder'}, function(err) {
+    // handle err
+  });
+});
+
 // Add remote
 
 gulp.task('remote', function(){
