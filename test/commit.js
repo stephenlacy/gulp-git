@@ -94,4 +94,46 @@ module.exports = function(git, util){
         gitS.end();
     });
   });
+  
+  it('should not fire a data event by default', function(done) {
+    var fakeFile = util.testOptionsFiles[9];
+    exec('git add ' + fakeFile.path, {cwd: './test/repo/'},
+      function (error, stdout, stderr) {
+        var opt = {cwd: './test/repo/'};
+        var gitS = git.commit('initial commit', opt);
+        var gotData = false;
+        var wasDone = false;
+        
+        gitS.on('data', function(data) {
+          gotData = true; 
+        });
+        
+        gitS.on('end', function() {
+          gotData.should.be.false;
+          if(!wasDone) {
+            done();
+            wasDone=true;
+          }
+        });
+        
+        gitS.write(fakeFile);
+        gitS.end();
+    });
+  });
+    
+  it('should fire a data event if emitData is true', function(done) {
+    var fakeFile = util.testOptionsFiles[4];
+    exec('git add ' + fakeFile.path, {cwd: './test/repo/'},
+      function (error, stdout, stderr) {
+        var opt = {cwd: './test/repo/', emitData: true};
+        var gitS = git.commit('initial commit', opt);
+        gitS.on('data', function(data) {
+          if (data) { 
+            done();
+          }
+        });
+        gitS.write(fakeFile);
+        gitS.end();
+    });
+  });
 };

@@ -98,6 +98,17 @@ gulp.task('commit', function(){
     .pipe(git.commit(['initial commit', 'additional message']));
 });
 
+// Run git commit, emiting 'data' event during progress
+// This is useful when you have long running githooks
+// and want to show progress to your users on screen
+gulp.task('commit', function(){
+  return gulp.src('./git-test/*')
+    .pipe(git.commit('initial commit', {emitData:true}))
+    .on('data',function(data) {
+      console.log(data);
+    });
+});
+
 // Run git remote add
 // remote is the remote repo
 // repo is the https url of the repo
