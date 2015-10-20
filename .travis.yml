@@ -1,8 +1,7 @@
 sudo: false
 language: node_js
 node_js:
-  - "iojs"
-  - "0.10"
+  - "4.1.1"
   - "0.12"
 before_install:
   -  git config --global user.email "you@example.com"
