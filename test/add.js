@@ -36,4 +36,16 @@ module.exports = function(git, util){
     gitS.end(done);
   });
 
+  it('should fire an end event', function(done) {
+    var fakeFile = new gutil.File(util.testFiles[0]);
+    var gitS = git.add();
+
+    gitS.on('end', function() {
+      done();
+    });
+
+    gitS.write(fakeFile);
+    gitS.end();
+  });
+
 };
