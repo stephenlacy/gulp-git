@@ -419,7 +419,7 @@ Pushes changes to remote repo
 
 `remote`: String, name of remote, default: `origin`
 
-`branch`: String, branch, default: `master`
+`branch`: String (may be `null`), branch, default: `master`
 
 `opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true}`
 
