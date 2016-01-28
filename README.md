@@ -434,11 +434,11 @@ git.push('origin', 'master', function (err) {
 ### git.tag(version, message, opt, cb)
 `git tag -a/s <version> -m <message>`
 
-Tags repo with release version
+Tags repo with release version, returns all tags when used without arguments
 
-`version`: String, tag name
+`version`: String (optional), tag name
 
-`message`: String, tag message
+`message`: String (optional), tag message
 
 `opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true}`
 
