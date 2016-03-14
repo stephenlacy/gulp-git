@@ -305,7 +305,7 @@ git.clone('https://remote.git', function (err) {
 ```
 A desination folder or subfolder can be set with `args: '<destination>'`
 ```
-git.clone('https://remote.git', {args: './sub/folder'} function (err) {
+git.clone('https://remote.git', {args: './sub/folder'}, function (err) {
   //if (err) ...
 });
 ```
