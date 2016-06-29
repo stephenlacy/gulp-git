@@ -143,11 +143,25 @@ gulp.task('push', function(){
   });
 });
 
+// Run git push with multiple branches and tags
+gulp.task('push', function(){
+  git.push('origin', ['master', 'develop'], {args: " --tags"}, function (err) {
+    if (err) throw err;
+  });
+});
+
 // Run git pull
 // remote is the remote repo
 // branch is the remote branch to pull from
 gulp.task('pull', function(){
   git.pull('origin', 'master', {args: '--rebase'}, function (err) {
+    if (err) throw err;
+  });
+});
+
+// Run git pull from multiple branches
+gulp.task('pull', function(){
+  git.pull('origin', ['master', 'develop'], function (err) {
     if (err) throw err;
   });
 });
