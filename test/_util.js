@@ -36,7 +36,7 @@ var testFiles = (function(){
 
 var testOptionsFiles = (function(){
   var testFiles = [];
-  for (var i = 0; i < 10; i++) {
+  for (var i = 0; i < 12; i++) {
     testFiles[i] = {
       base: 'test/repo',
       cwd: 'test/repo',

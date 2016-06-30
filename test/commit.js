@@ -94,6 +94,46 @@ module.exports = function(git, util){
         gitS.end();
     });
   });
+
+  it('should commit a file to the repo when passing a message with newlines', function(done) {
+    var fakeFile = util.testOptionsFiles[10];
+    exec('git add ' + fakeFile.path, {cwd: './test/repo/'},
+      function (error, stdout, stderr) {
+        var opt = {cwd: './test/repo/', disableAppendPaths: true};
+        var gitS = git.commit('initial commit\nadditional message', opt);
+        gitS.on('end', function(err) {
+          if(err) {console.error(err); }
+          setTimeout(function(){
+            var result = fs.readFileSync(util.testCommit)
+              .toString('utf8');
+            result.should.match(/initial commit\nadditional message/);
+            done();
+          }, 300);
+        });
+        gitS.write(fakeFile);
+        gitS.end();
+    });
+  });
+
+  it('should commit a file to the repo when passing multiple messages and multi option', function(done) {
+    var fakeFile = util.testOptionsFiles[11];
+    exec('git add ' + fakeFile.path, {cwd: './test/repo/'},
+      function (error, stdout, stderr) {
+        var opt = {cwd: './test/repo/', disableAppendPaths: true, multi: true};
+        var gitS = git.commit(['initial commit', 'additional message'], opt);
+        gitS.on('end', function(err) {
+          if(err) {console.error(err); }
+          setTimeout(function(){
+            var result = fs.readFileSync(util.testCommit)
+              .toString('utf8');
+            result.should.match(/initial commit\nadditional message/);
+            done();
+          }, 300);
+        });
+        gitS.write(fakeFile);
+        gitS.end();
+    });
+  });
   
   it('should not fire a data event by default', function(done) {
     var fakeFile = util.testOptionsFiles[9];
