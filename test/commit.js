@@ -115,11 +115,11 @@ module.exports = function(git, util){
     });
   });
 
-  it('should commit a file to the repo when passing multiple messages and multi option', function(done) {
+  it('should commit a file to the repo when passing multiple messages and multiline option', function(done) {
     var fakeFile = util.testOptionsFiles[11];
     exec('git add ' + fakeFile.path, {cwd: './test/repo/'},
       function (error, stdout, stderr) {
-        var opt = {cwd: './test/repo/', disableAppendPaths: true, multi: true};
+        var opt = {cwd: './test/repo/', disableAppendPaths: true, multiline: true};
         var gitS = git.commit(['initial commit', 'additional message'], opt);
         gitS.on('end', function(err) {
           if(err) {console.error(err); }
