@@ -46,6 +46,18 @@ gulp.task('commitmulti', function(){
   .pipe(git.commit(['initial commit', 'additional message']));
 });
 
+// Commit files using the multiline option
+gulp.task('commitmultiline', function(){
+  gulp.src('./*')
+  .pipe(git.commit(['initial commit', 'additional message'], { mutiline: true }));
+});
+
+// Commit files with multiline messages
+gulp.task('commitmultiline', function(){
+  gulp.src('./*')
+  .pipe(git.commit('initial commit\nadditional message'));
+});
+
 // Clone remote repo to current directory ($CWD/git-test)
 gulp.task('clone', function() {
   git.clone('https://github.com/stevelacy/git-test', function(err) {

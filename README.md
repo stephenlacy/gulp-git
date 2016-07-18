@@ -344,7 +344,7 @@ Commits changes to repo
 
 `message`: String, commit message
 
-`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', maxBuffer: 200 * 1024, quiet: true, disableMessageRequirement: false, disableAppendPaths: false}`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', maxBuffer: 200 * 1024, quiet: true, disableMessageRequirement: false, disableAppendPaths: false, multiline: false}`
 
 ```js
 gulp.src('./*')
