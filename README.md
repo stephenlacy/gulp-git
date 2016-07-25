@@ -203,6 +203,13 @@ gulp.task('tag', function(){
   });
 });
 
+// Tag the repo with a version and empty message
+gulp.task('tag', function(){
+  git.tag('v1.1.1', '', function (err) {
+    if (err) throw err;
+  });
+});
+
 // Tag the repo With signed key
 gulp.task('tagsec', function(){
   git.tag('v1.1.1', 'Version message with signed key', {signed: true}, function (err) {
