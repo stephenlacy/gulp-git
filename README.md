@@ -668,12 +668,11 @@ Remove untracked files from the working tree
 
 Reported [here](https://github.com/stevelacy/gulp-git/issues/68).
 
-If you get this error it means that git process doesn't have enough memory and you have to provide it with more.
+If you get this error it means that the git process doesn't have enough memory.
 
-Every function have additional option you can add: `maxBuffer`.
-Your fixed pull should look something like this:
+Every function has an additional option: `maxBuffer`.
 
-```
+```js
 gulp.task('pull', function(){
   git.pull('origin', 'master', {args: '--rebase', maxBuffer: Infinity}, function (err) {
     if (err) throw err;
