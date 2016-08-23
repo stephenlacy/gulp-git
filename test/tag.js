@@ -13,8 +13,10 @@ module.exports = function(git, testFiles, testCommit){
 
   it('should tag a version of the repo', function(done) {
     git.tag('v1.2.3', 'message', {cwd: './test/repo/'}, function() {
-      should.exist('test/repo/.git/refs/tags/v1.2.3');
-      done();
+      fs.stat('test/repo/.git/refs/tags/v1.2.3', function(err, stats) {
+        should.not.exist(err);
+        done();
+      });
     });
   });
 
