@@ -13,8 +13,11 @@ module.exports = function(git, util){
     git.clone(repo, {args: './test/tmp'}, done);
   });
 
-  it('should have cloned project into tmp directory', function(){
-    should.exist('./test/tmp/.git');
+  it('should have cloned project into tmp directory', function(done){
+    fs.stat('./test/tmp/.git', function(err, stats){
+      should.not.exist(err);
+      done();
+    });
   });
 
   afterEach(function(done){

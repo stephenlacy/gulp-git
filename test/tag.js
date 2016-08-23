@@ -12,14 +12,16 @@ module.exports = function(git, testFiles, testCommit){
   // no pull delay, and has git configured.
 
   it('should tag a version of the repo', function(done) {
-    git.tag('v1.2.3', 'message', {cwd: './test/'}, function() {
-      should.exist('test/.git/refs/tags/v1.2.3');
-      done();
+    git.tag('v1.2.3', 'message', {cwd: './test/repo/'}, function() {
+      fs.stat('test/repo/.git/refs/tags/v1.2.3', function(err, stats) {
+        should.not.exist(err);
+        done();
+      });
     });
   });
 
   it('should not throw an error on success', function(done) {
-    git.tag('v2', 'message', {cwd: './test/'}, function(err) {
+    git.tag('v2', 'message', {cwd: './test/repo/'}, function(err) {
       should.not.exist(err);
       done();
     });
