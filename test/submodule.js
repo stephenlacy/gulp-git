@@ -18,9 +18,10 @@ module.exports = function(git, testFiles, testCommit){
       fs.readFileSync('test/repo/.gitmodules')
         .toString('utf8')
         .should.match(new RegExp(url.replace(/[\/]/g, '\\$&')));
-      should.exist('test/repo/testSubmodule');
-      should.exist('test/repo/testSubmodule/.git/');
-      done();
+      fs.stat('test/repo/testSubmodule/.git', function(err, stats){
+        should.not.exist(err);
+        done();
+      });
     });
   });
 
@@ -28,14 +29,15 @@ module.exports = function(git, testFiles, testCommit){
     var args = {cwd: 'test/repo'};
 
     git.updateSubmodule(args, function(){
-      should.exist('test/repo/testSubmodule');
-      should.exist('test/repo/testSubmodule/.git/');
-      done();
+      fs.stat('test/repo/testSubmodule/.git', function(err, stats){
+        should.not.exist(err);
+        done();
+      });
     });
   });
 
   after(function(done){
-    rimraf('test/testSubmodule', function(err){
+    rimraf('test/repo/testSubmodule', function(err){
       if(err) return done(err);
       done();
     });
