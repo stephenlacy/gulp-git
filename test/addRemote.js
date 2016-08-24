@@ -12,7 +12,7 @@ module.exports = function(git, util){
     var opt = {cwd: './test/repo/'};
     var origin = 'https://github.com/stevelacy/git-test';
     git.addRemote('origin', origin, opt, function(){
-      should.exist('./test/repo/.git/');
+      fs.statSync('./test/repo/.git/');
       fs.readFileSync('./test/repo/.git/config')
         .toString('utf8')
         .should.match(/https:\/\/github.com\/stevelacy\/git-test/);
