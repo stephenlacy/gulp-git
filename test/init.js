@@ -13,8 +13,10 @@ module.exports = function(git, testFiles, testCommit){
   });
 
   it('should initialize a empty git repo', function(done) {
-    should.exist('test/repo/.git/');
-    done();
+    fs.stat('test/repo/.git/', function(err, stats) {
+      should.not.exist(err);
+      done();
+    });
   });
 
 };
