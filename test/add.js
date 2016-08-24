@@ -13,8 +13,10 @@ module.exports = function(git, util){
     var gitS = git.add();
     gitS.on('data', function(newFile){
       should.exist(newFile);
-      should.exist('test/.git/objects/');
-      done();
+      fs.stat('test/repo/.git/objects/', function(err, stats){
+        should.not.exist(err);
+        done();
+      });
     });
     gitS.write(fakeFile);
     gitS.end();
@@ -28,7 +30,9 @@ module.exports = function(git, util){
     var gitS = git.add();
     gitS.on('data', function(newFile){
       should.exist(newFile);
-      should.exist('test/.git/objects/');
+      fs.stat('test/repo/.git/objects/', function(err, stats){
+        should.not.exist(err);
+      });
     });
     fakeFiles.forEach(function(file){
       gitS.write(file);
