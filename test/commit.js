@@ -162,12 +162,12 @@ module.exports = function(git, util){
   });
 
   it('should fire a data event if emitData is true', function(done) {
-    var fakeFile = util.testOptionsFiles[4];
+    var fakeFile = util.testOptionsFiles[6];
     exec('git add ' + fakeFile.path, {cwd: './test/repo/'},
       function (error, stdout, stderr) {
         var opt = {cwd: './test/repo/', emitData: true};
         var gitS = git.commit('initial commit', opt);
-        gitS.on('data', function(data) {
+        gitS.once('data', function(data) {
           if (data) {
             done();
           }
