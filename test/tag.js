@@ -26,4 +26,14 @@ module.exports = function(git, testFiles, testCommit){
       done();
     });
   });
+
+  it('should tag a version with an empty message', function(done) {
+    git.tag('v3', '', {cwd: './test/repo/'}, function(err) {
+      should.not.exist(err);
+      fs.stat('test/repo/.git/refs/tags/v3', function(err, stats) {
+        should.not.exist(err);
+        done();
+      });
+    });
+  });
 };
