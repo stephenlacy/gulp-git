@@ -419,9 +419,9 @@ git.fetch('origin', '', function (err) {
 
 Pulls changes from remote repo
 
-`remote`: String, name of remote, default: `origin`
+`remote`: String, name of remote, default: `undefined`
 
-`branch`: String, branch, default: `master`
+`branch`: String || Array, branch, default: `undefined`
 
 `opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true, maxBuffer: 200 * 1024}`
 
@@ -429,6 +429,21 @@ Pulls changes from remote repo
 
 ```js
 git.pull('origin', 'master', function (err) {
+  //if (err) ...
+});
+
+// without any remote or branches
+git.pull(function(err){
+  //if (err) ...
+});
+
+// with only a remote
+git.pull('upstream', function(err){
+  //if (err) ...
+});
+
+// with remote and an array of branches
+git.pull('upstream' ['dev', 'master'], function(err){
   //if (err) ...
 });
 ```

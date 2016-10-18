@@ -94,7 +94,31 @@ gulp.task('push', function(){
 
 gulp.task('pull', function(){
   git.pull('origin', 'master', function (err) {
-    //if (err) ...
+    if (err) console.log(err);
+  });
+});
+
+// Pull from remote repo with only origin
+
+gulp.task('pull-origin', function(){
+  git.pull('origin', function (err) {
+    if (err) console.log(err);
+  });
+});
+
+// Pull from all remote branches and tags
+
+gulp.task('pull-all', function(){
+  git.pull(function (err) {
+    if (err) console.log(err);
+  });
+});
+
+// Pull from array of branches
+
+gulp.task('pull-array', function(){
+  git.pull('origin', ['master', 'development'], function (err) {
+    if (err) console.log(err);
   });
 });
 
