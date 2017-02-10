@@ -1,0 +1,67 @@
+{
+  "env": {
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended"
+  ],
+  "root": true,
+  "rules": {
+    "block-scoped-var": "error",
+    "camelcase": "error",
+    "eqeqeq": [
+      "error",
+      "smart"
+    ],
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "linebreak-style": "error",
+    "max-depth": [
+      "error",
+      5
+    ],
+    "max-statements": [
+      "error",
+      50
+    ],
+    "no-console": [
+      "off",
+      {
+        "allow": [
+          "warn",
+          "error",
+          "info",
+          "dir",
+          "time",
+          "debug"
+        ]
+      }
+    ],
+    "new-cap": 0,
+    "no-extend-native": "error",
+    "no-invalid-this": "error",
+    "no-undef": "error",
+    "no-unused-expressions": "error",
+    "no-unused-vars": 0,
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "always",
+      {
+        "omitLastInOneLineBlock": false
+      }
+    ],
+    "strict": [
+      "error",
+      "safe"
+    ]
+  }
+}

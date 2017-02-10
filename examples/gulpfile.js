@@ -72,6 +72,23 @@ gulp.task('clonesub', function() {
   });
 });
 
+// Lint js files in index before git commit
+gulp.task('precommit', function() {
+  var eslint = require('gulp-eslint');
+  // get changes between HEAD and index
+  return git.diff('--cached', {
+    args: '-- *.js'
+  })
+    // Read file contents from git index
+    .pipe(git.catFile())
+    // Lint files that different between HEAD and index
+    .pipe(eslint())
+    // Outputs the lint results to the console.
+    .pipe(eslint.format())
+    // To have the process exit with an error code (1) on
+    .pipe(eslint.failAfterError());
+});
+
 // Add remote
 
 gulp.task('remote', function(){
