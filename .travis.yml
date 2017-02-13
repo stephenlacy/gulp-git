@@ -7,8 +7,3 @@ node_js:
 before_install:
   - git config --global user.email "you@example.com"
   - git config --global user.name "Your Name"
-install_script:
-  - npm i
-script:
-  - node_modules/.bin/mocha --reporter spec --timeout 6000 test/main.js
-  - gulp lint_diff

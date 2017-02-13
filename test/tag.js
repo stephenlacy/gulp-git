@@ -6,7 +6,7 @@ var rimraf = require('rimraf');
 var should = require('should');
 var gutil = require('gulp-util');
 
-module.exports = function(git, testFiles, testCommit){
+module.exports = function(git, testFiles, testCommit) {
 
   // These must be run on a system which has git installed
   // no pull delay, and has git configured.

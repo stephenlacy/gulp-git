@@ -1,0 +1,10 @@
+{
+  "env": {
+    "node": true,
+    "mocha": true
+  },
+  "extends": [
+    "../.eslintrc.json"
+  ],
+  "root": false
+}

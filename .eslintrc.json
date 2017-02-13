@@ -20,6 +20,13 @@
         "SwitchCase": 1
       }
     ],
+    "keyword-spacing": [
+      "error",
+      {
+        "after": true,
+        "before": false
+      }
+    ],
     "linebreak-style": "error",
     "max-depth": [
       "error",
@@ -29,6 +36,7 @@
       "error",
       50
     ],
+    "new-cap": 0,
     "no-console": [
       "off",
       {
@@ -42,15 +50,16 @@
         ]
       }
     ],
-    "new-cap": 0,
     "no-extend-native": "error",
-    "no-invalid-this": "error",
     "no-undef": "error",
     "no-unused-expressions": "error",
-    "no-unused-vars": 0,
+    "no-unused-vars": "off",
     "quotes": [
       "error",
-      "single"
+      "single",
+      {
+        "avoidEscape": true
+      }
     ],
     "semi": [
       "error",
@@ -58,6 +67,15 @@
       {
         "omitLastInOneLineBlock": false
       }
+    ],
+    "space-before-blocks": [
+      "error",
+      "always"
+    ],
+    "space-infix-ops": "error",
+    "spaced-comment": [
+      "error",
+      "always"
     ],
     "strict": [
       "error",
