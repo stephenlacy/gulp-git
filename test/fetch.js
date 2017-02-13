@@ -14,7 +14,7 @@ module.exports = function(git, util) {
     var repo = 'git://github.com/stevelacy/git-test';
     git.clone(repo, {args: './test/tmp'}, function() {
       exec('git update-ref -d refs/tags/v1.1.1', {cwd: './test/tmp'}, function(err) {
-        if (err)return done(err);
+        if (err) return done(err);
         done();
       });
     });
@@ -33,7 +33,7 @@ module.exports = function(git, util) {
 
   afterEach(function(done) {
     rimraf('./test/tmp', function(err) {
-      if (err)return done(err);
+      if (err) return done(err);
       done();
     });
   });

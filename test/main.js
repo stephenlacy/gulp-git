@@ -29,7 +29,7 @@ describe('gulp-git', function() {
   // wipe
   after(function(done) {
     rimraf('test/repo', function(err) {
-      if (err)return done(err);
+      if (err) return done(err);
       done();
     });
   });

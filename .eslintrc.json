@@ -24,7 +24,7 @@
       "error",
       {
         "after": true,
-        "before": false
+        "before": true
       }
     ],
     "linebreak-style": "error",

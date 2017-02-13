@@ -22,7 +22,7 @@ module.exports = function(git, util) {
 
   afterEach(function(done) {
     rimraf('./test/tmp', function(err) {
-      if (err)return done(err);
+      if (err) return done(err);
       done();
     });
   });
