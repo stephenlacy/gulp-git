@@ -6,6 +6,7 @@ var rimraf = require('rimraf');
 var should = require('should');
 var gutil = require('gulp-util');
 var exec = require('child_process').exec;
+var isVinyl = require('vinyl').isVinyl;
 
 module.exports = function(git, util) {
 
@@ -145,7 +146,10 @@ module.exports = function(git, util) {
         var wasDone = false;
 
         gitS.on('data', function(data) {
-          gotData = true;
+          if (!isVinyl(data)) {
+            console.log(data);
+            gotData = true;
+          }
         });
 
         gitS.on('end', function() {
@@ -167,9 +171,20 @@ module.exports = function(git, util) {
       function (error, stdout, stderr) {
         var opt = {cwd: './test/repo/', emitData: true};
         var gitS = git.commit('initial commit', opt);
-        gitS.once('data', function(data) {
-          if (data) {
+        var gotData = false;
+        var wasDone = false;
+
+        gitS.on('data', function(data) {
+          if (!isVinyl(data)) {
+            gotData = true;
+          }
+        });
+
+        gitS.on('end', function() {
+          gotData.should.be.true();
+          if (!wasDone) {
             done();
+            wasDone = true;
           }
         });
         gitS.write(fakeFile);

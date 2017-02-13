@@ -5,6 +5,7 @@ var path = require('path');
 var rimraf = require('rimraf');
 var should = require('should');
 var gutil = require('gulp-util');
+var Vinyl = require('vinyl');
 
 var repo = path.join(__dirname, 'repo');
 
@@ -37,12 +38,12 @@ var testFiles = (function() {
 var testOptionsFiles = (function() {
   var testFiles = [];
   for (var i = 0; i < 12; i++) {
-    testFiles[i] = {
+    testFiles[i] = new Vinyl({
       base: 'test/repo',
       cwd: 'test/repo',
       path: __dirname + '/repo/test.options.' + i + '.js',
       contents: new Buffer(fileContents())
-    };
+    });
     fs.openSync(testFiles[i].path, 'w');
   }
   return testFiles;
