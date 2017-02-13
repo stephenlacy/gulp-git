@@ -20,7 +20,9 @@ describe('gulp-git', function() {
     var suite = path.basename(file, path.extname(file));
     describe(suite, function() {
       // the actual suite code
-      require('./' + file)(git, util);
+      if (/\.js$/.test(file)) {
+        require('./' + file)(git, util);
+      }
     });
   });
 
