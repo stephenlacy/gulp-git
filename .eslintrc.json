@@ -1,0 +1,92 @@
+{
+  "env": {
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended"
+  ],
+  "root": true,
+  "rules": {
+    "block-scoped-var": "error",
+    "camelcase": "error",
+    "comma-spacing": [
+      "error",
+      {
+        "after": true,
+        "before": false
+      }
+    ],
+    "eqeqeq": [
+      "error",
+      "smart"
+    ],
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "keyword-spacing": [
+      "error",
+      {
+        "after": true,
+        "before": true
+      }
+    ],
+    "linebreak-style": "error",
+    "max-depth": [
+      "error",
+      5
+    ],
+    "max-statements": [
+      "error",
+      50
+    ],
+    "new-cap": 0,
+    "no-console": [
+      "off",
+      {
+        "allow": [
+          "warn",
+          "error",
+          "info",
+          "dir",
+          "time",
+          "debug"
+        ]
+      }
+    ],
+    "no-extend-native": "error",
+    "no-undef": "error",
+    "no-unused-expressions": "error",
+    "no-unused-vars": "off",
+    "quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true
+      }
+    ],
+    "semi": [
+      "error",
+      "always",
+      {
+        "omitLastInOneLineBlock": false
+      }
+    ],
+    "space-before-blocks": [
+      "error",
+      "always"
+    ],
+    "space-infix-ops": "error",
+    "spaced-comment": [
+      "error",
+      "always"
+    ],
+    "strict": [
+      "error",
+      "safe"
+    ]
+  }
+}

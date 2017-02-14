@@ -6,7 +6,7 @@ var rimraf = require('rimraf');
 var should = require('should');
 var gutil = require('gulp-util');
 
-module.exports = function(git, testFiles, testCommit){
+module.exports = function(git, testFiles, testCommit) {
 
   /*
     it('should pull from the remote repo', function(done) {
