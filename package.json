@@ -12,6 +12,7 @@
   "dependencies": {
     "any-shell-escape": "^0.1.1",
     "gulp-util": "^3.0.6",
+    "plugin-error": "^0.1.2",
     "require-dir": "^0.3.1",
     "strip-bom-stream": "^3.0.0",
     "through2": "^2.0.3",
