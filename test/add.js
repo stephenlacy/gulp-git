@@ -6,14 +6,14 @@ var rimraf = require('rimraf');
 var should = require('should');
 var gutil = require('gulp-util');
 
-module.exports = function(git, util){
+module.exports = function(git, util) {
 
   it('should add files to the git repo', function(done) {
     var fakeFile = new gutil.File(util.testFiles[0]);
     var gitS = git.add();
-    gitS.on('data', function(newFile){
+    gitS.on('data', function(newFile) {
       should.exist(newFile);
-      fs.stat('test/repo/.git/objects/', function(err, stats){
+      fs.stat('test/repo/.git/objects/', function(err, stats) {
         should.not.exist(err);
         done();
       });
@@ -24,17 +24,17 @@ module.exports = function(git, util){
 
   it('should add multiple files to the git repo', function(done) {
     var fakeFiles = [];
-    util.testFiles.forEach(function(name){
+    util.testFiles.forEach(function(name) {
       fakeFiles.push( new gutil.File(name) );
     });
     var gitS = git.add();
-    gitS.on('data', function(newFile){
+    gitS.on('data', function(newFile) {
       should.exist(newFile);
-      fs.stat('test/repo/.git/objects/', function(err, stats){
+      fs.stat('test/repo/.git/objects/', function(err, stats) {
         should.not.exist(err);
       });
     });
-    fakeFiles.forEach(function(file){
+    fakeFiles.forEach(function(file) {
       gitS.write(file);
     });
     gitS.end(done);

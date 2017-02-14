@@ -9,25 +9,27 @@ var git = require('../');
 var util = require('./_util');
 
 // omit logging
-gutil.log = function(){};
+gutil.log = function() {};
 
 
-describe('gulp-git', function(){
+describe('gulp-git', function() {
 
   var testSuite = util.testSuite();
 
-  testSuite.forEach(function(file){
+  testSuite.forEach(function(file) {
     var suite = path.basename(file, path.extname(file));
-    describe(suite, function(){
+    describe(suite, function() {
       // the actual suite code
-      require('./'+file)(git, util);
+      if (/\.js$/.test(file)) {
+        require('./' + file)(git, util);
+      }
     });
   });
 
   // wipe
-  after(function(done){
-    rimraf('test/repo', function(err){
-      if(err) return done(err);
+  after(function(done) {
+    rimraf('test/repo', function(err) {
+      if (err) return done(err);
       done();
     });
   });
