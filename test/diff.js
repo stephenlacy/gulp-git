@@ -17,6 +17,7 @@ module.exports = function(git, util) {
       diffFile.forEach(function(file) {
         subPath.push(file.relative.replace(/\\/g, '/'));
         diffInfo.push(file.git.diff);
+        should(file.isNull()).not.be.ok();
       });
       should.deepEqual(subPath, ['LICENSE', 'README.md', 'lib/tag.js', 'package.json']);
       should.deepEqual(diffInfo, [

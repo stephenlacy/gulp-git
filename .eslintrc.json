@@ -9,6 +9,13 @@
   "rules": {
     "block-scoped-var": "error",
     "camelcase": "error",
+    "comma-spacing": [
+      "error",
+      {
+        "after": true,
+        "before": false
+      }
+    ],
     "eqeqeq": [
       "error",
       "smart"

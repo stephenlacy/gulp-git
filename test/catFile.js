@@ -11,16 +11,19 @@ var execSync = require('child_process').execSync;
 
 module.exports = function(git, util) {
   it('package.json', function(done) {
-    var hash = execSync('git ls-files -s -- package.json').toString().replace(/^.+\b(\S{30,})\b.+$/m, '$1');
+    if (!/\b(\S{40,})\b/.test(execSync('git ls-files -s -- package.json').toString())) {
+      return;
+    }
+    var hash = RegExp.$1;
 
-    var srcStream = through.obj();
+    var stream = git.catFile();
 
-    srcStream.pipe(git.catFile()).on('data', function(file) {
+    stream.on('data', function(file) {
       should.exist(file.contents);
       done();
     });
 
-    srcStream.write(new Vinyl({
+    stream.write(new Vinyl({
       path: 'package.json',
       git: {
         hash: hash

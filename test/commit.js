@@ -143,7 +143,6 @@ module.exports = function(git, util) {
         var opt = {cwd: './test/repo/'};
         var gitS = git.commit('initial commit', opt);
         var gotData = false;
-        var wasDone = false;
 
         gitS.on('data', function(data) {
           if (!isVinyl(data)) {
@@ -152,12 +151,9 @@ module.exports = function(git, util) {
           }
         });
 
-        gitS.on('end', function() {
+        gitS.once('end', function() {
           gotData.should.be.false();
-          if (!wasDone) {
-            done();
-            wasDone = true;
-          }
+          done();
         });
 
         gitS.write(fakeFile);
@@ -180,12 +176,9 @@ module.exports = function(git, util) {
           }
         });
 
-        gitS.on('end', function() {
+        gitS.once('end', function() {
           gotData.should.be.true();
-          if (!wasDone) {
-            done();
-            wasDone = true;
-          }
+          done();
         });
         gitS.write(fakeFile);
         gitS.end();
