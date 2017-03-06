@@ -1,12 +1,8 @@
 'use strict';
 
 var fs = require('fs');
-var path = require('path');
-var rimraf = require('rimraf');
-var should = require('should');
-var gutil = require('gulp-util');
 
-module.exports = function(git, util) {
+module.exports = function(git) {
 
   it('should add a Remote to the git repo', function(done) {
     var opt = {cwd: './test/repo/'};

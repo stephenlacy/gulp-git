@@ -2,9 +2,6 @@
 
 var fs = require('fs');
 var path = require('path');
-var rimraf = require('rimraf');
-var should = require('should');
-var gutil = require('gulp-util');
 var Vinyl = require('vinyl');
 
 var repo = path.join(__dirname, 'repo');

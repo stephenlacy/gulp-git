@@ -7,7 +7,7 @@ var rimraf = require('rimraf');
 var should = require('should');
 var exec = require('child_process').exec;
 
-module.exports = function(git, util) {
+module.exports = function(git) {
 
 
   beforeEach(function(done) {

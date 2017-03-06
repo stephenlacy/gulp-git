@@ -1,8 +1,6 @@
 'use strict';
 
 var fs = require('fs');
-var path = require('path');
-var rimraf = require('rimraf');
 var should = require('should');
 var gutil = require('gulp-util');
 
@@ -13,7 +11,7 @@ module.exports = function(git, util) {
     var gitS = git.add();
     gitS.on('data', function(newFile) {
       should.exist(newFile);
-      fs.stat('test/repo/.git/objects/', function(err, stats) {
+      fs.stat('test/repo/.git/objects/', function(err) {
         should.not.exist(err);
         done();
       });
@@ -30,7 +28,7 @@ module.exports = function(git, util) {
     var gitS = git.add();
     gitS.on('data', function(newFile) {
       should.exist(newFile);
-      fs.stat('test/repo/.git/objects/', function(err, stats) {
+      fs.stat('test/repo/.git/objects/', function(err) {
         should.not.exist(err);
       });
     });
