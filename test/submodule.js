@@ -1,12 +1,10 @@
 'use strict';
 
 var fs = require('fs');
-var path = require('path');
 var rimraf = require('rimraf');
 var should = require('should');
-var gutil = require('gulp-util');
 
-module.exports = function(git, testFiles, testCommit) {
+module.exports = function(git) {
 
   it('should add a submodule to the git repo', function(done) {
 
@@ -18,7 +16,7 @@ module.exports = function(git, testFiles, testCommit) {
       fs.readFileSync('test/repo/.gitmodules')
         .toString('utf8')
         .should.match(new RegExp(url.replace(/[\/]/g, '\\$&')));
-      fs.stat('test/repo/testSubmodule/.git', function(err, stats) {
+      fs.stat('test/repo/testSubmodule/.git', function(err) {
         should.not.exist(err);
         done();
       });
@@ -29,7 +27,7 @@ module.exports = function(git, testFiles, testCommit) {
     var args = {cwd: 'test/repo'};
 
     git.updateSubmodule(args, function() {
-      fs.stat('test/repo/testSubmodule/.git', function(err, stats) {
+      fs.stat('test/repo/testSubmodule/.git', function(err) {
         should.not.exist(err);
         done();
       });

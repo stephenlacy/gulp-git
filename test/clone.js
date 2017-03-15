@@ -1,12 +1,10 @@
 'use strict';
 
 var fs = require('fs');
-var path = require('path');
 var rimraf = require('rimraf');
 var should = require('should');
-var gutil = require('gulp-util');
 
-module.exports = function(git, util) {
+module.exports = function(git) {
 
   beforeEach(function(done) {
     var repo = 'git://github.com/stevelacy/gulp-git';
@@ -14,7 +12,7 @@ module.exports = function(git, util) {
   });
 
   it('should have cloned project into tmp directory', function(done) {
-    fs.stat('./test/tmp/.git', function(err, stats) {
+    fs.stat('./test/tmp/.git', function(err) {
       should.not.exist(err);
       done();
     });

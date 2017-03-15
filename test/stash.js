@@ -1,12 +1,8 @@
 'use strict';
 
 var fs = require('fs');
-var path = require('path');
-var rimraf = require('rimraf');
-var should = require('should');
-var gutil = require('gulp-util');
 
-module.exports = function(git, util) {
+module.exports = function(git) {
 
   it('should stash a branch', function(done) {
     var opt = {cwd: './test/repo'};
@@ -21,7 +17,7 @@ module.exports = function(git, util) {
   it('should unstash a branch', function(done) {
     var opt = {cwd: './test/repo', args: 'pop'};
     git.stash(opt, function() {
-      fs.open('test/repo/.git/refs/stash', 'r', function(err, fd) {
+      fs.open('test/repo/.git/refs/stash', 'r', function(err) {
         err.code.should.be.exactly('ENOENT');
         done();
       });

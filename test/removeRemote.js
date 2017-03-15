@@ -1,17 +1,14 @@
 'use strict';
 
 var fs = require('fs');
-var path = require('path');
-var rimraf = require('rimraf');
 var should = require('should');
-var gutil = require('gulp-util');
 
-module.exports = function(git, util) {
+module.exports = function(git) {
 
   it('should remove the Remote origin from the git repo', function(done) {
     var opt = {cwd: './test/repo/'};
     git.removeRemote('origin', opt, function() {
-      fs.stat('./test/repo/.git/', function(err, stats) {
+      fs.stat('./test/repo/.git/', function(err) {
         should.not.exist(err);
         fs.readFileSync('./test/repo/.git/config')
           .toString('utf8')

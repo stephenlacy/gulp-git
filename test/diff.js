@@ -1,12 +1,8 @@
 'use strict';
 
-var fs = require('fs');
-var path = require('path');
-var rimraf = require('rimraf');
 var should = require('should');
-var gutil = require('gulp-util');
 
-module.exports = function(git, util) {
+module.exports = function(git) {
   it('diff files', function(done) {
     var diffFile = [];
     git.diff('1.12.0...1.13.0').on('data', function (file) {

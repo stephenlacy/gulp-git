@@ -61,14 +61,18 @@ gulp.task('commitmultiline', function() {
 // Clone remote repo to current directory ($CWD/git-test)
 gulp.task('clone', function() {
   git.clone('https://github.com/stevelacy/git-test', function(err) {
-    // handle err
+    if (err) {
+      console.error(err);
+    }
   });
 });
 
 // Clone remote repo to sub folder ($CWD/sub/folder/git-test)
 gulp.task('clonesub', function() {
   git.clone('https://github.com/stevelacy/git-test', {args: './sub/folder'}, function(err) {
-    // handle err
+    if (err) {
+      console.error(err);
+    }
   });
 });
 
@@ -93,7 +97,9 @@ gulp.task('precommit', function() {
 
 gulp.task('remote', function() {
   git.addRemote('origin', 'https://github.com/stevelacy/git-test', function (err) {
-    // if (err) ...
+    if (err) {
+      console.error(err);
+    }
   });
 });
 
@@ -102,7 +108,9 @@ gulp.task('remote', function() {
 
 gulp.task('push', function() {
   git.push('origin', 'master', function (err) {
-    // if (err) ...
+    if (err) {
+      console.error(err);
+    }
   });
 });
 
@@ -143,20 +151,26 @@ gulp.task('pull-array', function() {
 
 gulp.task('tag', function() {
   git.tag('v1.1.1', 'Version message', function (err) {
-    // if (err) ...
+    if (err) {
+      console.error(err);
+    }
   });
 });
 
 // Tag the repo WITH signed key
 gulp.task('tagsec', function() {
   git.tag('v1.1.1', 'Version message with signed key', {signed:true}, function (err) {
-    // if (err) ...
+    if (err) {
+      console.error(err);
+    }
   });
 });
 
 gulp.task('push-tag', function() {
   git.push('origin', 'v1.1.1', function (err) {
-    // if (err) ...
+    if (err) {
+      console.error(err);
+    }
   });
 });
 

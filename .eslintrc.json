@@ -44,23 +44,9 @@
       50
     ],
     "new-cap": 0,
-    "no-console": [
-      "off",
-      {
-        "allow": [
-          "warn",
-          "error",
-          "info",
-          "dir",
-          "time",
-          "debug"
-        ]
-      }
-    ],
+    "no-console": "off",
     "no-extend-native": "error",
-    "no-undef": "error",
     "no-unused-expressions": "error",
-    "no-unused-vars": "off",
     "quotes": [
       "error",
       "single",
@@ -87,6 +73,7 @@
     "strict": [
       "error",
       "safe"
-    ]
+    ],
+    "valid-jsdoc": "error"
   }
 }
