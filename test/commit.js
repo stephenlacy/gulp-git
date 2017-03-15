@@ -56,8 +56,7 @@ module.exports = function(git, util) {
     exec('git add ' + fakeFile.path, {cwd: './test/repo/'},
       function (error) {
         if (error) {
-          done(error);
-          return;
+          return done(error);
         }
         var opt = {cwd: './test/repo/', disableAppendPaths: true};
         var gitS = git.commit('initial commit', opt);
@@ -80,8 +79,7 @@ module.exports = function(git, util) {
     exec('git add ' + fakeFile.path, {cwd: './test/repo/'},
       function (error) {
         if (error) {
-          done(error);
-          return;
+          return done(error);
         }
         var opt = {cwd: './test/repo/', disableAppendPaths: true};
         var gitS = git.commit(['initial commit', 'additional message'], opt);
@@ -105,8 +103,7 @@ module.exports = function(git, util) {
     exec('git add ' + fakeFile.path, {cwd: './test/repo/'},
       function (error) {
         if (error) {
-          done(error);
-          return;
+          return done(error);
         }
         var opt = {cwd: './test/repo/', disableAppendPaths: true};
         var gitS = git.commit('initial commit\nadditional message', opt);
@@ -129,8 +126,7 @@ module.exports = function(git, util) {
     exec('git add ' + fakeFile.path, {cwd: './test/repo/'},
       function (error) {
         if (error) {
-          done(error);
-          return;
+          return done(error);
         }
         var opt = {cwd: './test/repo/', disableAppendPaths: true, multiline: true};
         var gitS = git.commit(['initial commit', 'additional message'], opt);
@@ -153,8 +149,7 @@ module.exports = function(git, util) {
     exec('git add ' + fakeFile.path, {cwd: './test/repo/'},
       function (error) {
         if (error) {
-          done(error);
-          return;
+          return done(error);
         }
         var opt = {cwd: './test/repo/'};
         var gitS = git.commit('initial commit', opt);
@@ -182,8 +177,7 @@ module.exports = function(git, util) {
     exec('git add ' + fakeFile.path, {cwd: './test/repo/'},
       function (error) {
         if (error) {
-          done(error);
-          return;
+          return done(error);
         }
         var opt = {cwd: './test/repo/', emitData: true};
         var gitS = git.commit('initial commit', opt);
