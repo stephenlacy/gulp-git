@@ -18,4 +18,12 @@ module.exports = function(git) {
     });
   });
 
+  it('should return an error if no remote exists', function(done) {
+    var opt = {cwd: './test/repo/'};
+    git.removeRemote(opt, function(e) {
+      should(e.message).match('gulp-git: remote is required git.removeRemote("origin")');
+      done();
+    });
+  });
+
 };

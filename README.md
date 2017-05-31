@@ -253,6 +253,13 @@ gulp.task('reset', function(){
   });
 });
 
+// Show the formatted git diff
+gulp.task('diff', function(){
+  gulp.src('./*')
+    .pipe(git.diff('master', {log: true}))
+    .pipe(gulp.dest('./diff.out'));
+});
+
 // Git rm a file or folder
 gulp.task('rm', function(){
   return gulp.src('./gruntfile.js')
