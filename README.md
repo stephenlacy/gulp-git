@@ -139,7 +139,7 @@ gulp.task('push', function(){
 // Run git push
 // branch is the current branch & remote branch to push to
 gulp.task('push', function(){
-  git.push('origin', null, function (err) {
+  git.push('origin', function (err) {
     if (err) throw err;
   });
 });
