@@ -1,4 +1,5 @@
-#gulp-git
+# gulp-git
+
 [![Build Status](https://travis-ci.org/stevelacy/gulp-git.png?branch=master)](https://travis-ci.org/stevelacy/gulp-git)
 [![NPM version](https://badge.fury.io/js/gulp-git.png)](http://badge.fury.io/js/gulp-git)
 
@@ -135,6 +136,14 @@ gulp.task('push', function(){
   });
 });
 
+// Run git push
+// branch is the current branch & remote branch to push to
+gulp.task('push', function(){
+  git.push('origin', function (err) {
+    if (err) throw err;
+  });
+});
+
 // Run git push with options
 // branch is the remote branch to push to
 gulp.task('push', function(){
@@ -250,6 +259,13 @@ gulp.task('reset', function(){
   git.reset('SHA', function (err) {
     if (err) throw err;
   });
+});
+
+// Show the formatted git diff
+gulp.task('diff', function(){
+  gulp.src('./*')
+    .pipe(git.diff('master', {log: true}))
+    .pipe(gulp.dest('./diff.out'));
 });
 
 // Git rm a file or folder
