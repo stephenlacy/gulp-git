@@ -1,5 +1,6 @@
 {
   "env": {
+    "es6": true,
     "node": true
   },
   "extends": [
@@ -7,6 +8,13 @@
   ],
   "root": true,
   "rules": {
+    "arrow-spacing": [
+      "error",
+      {
+        "after": true,
+        "before": true
+      }
+    ],
     "block-scoped-var": "error",
     "camelcase": "error",
     "comma-spacing": [
@@ -51,6 +59,7 @@
       "error",
       "single",
       {
+        "allowTemplateLiterals": true,
         "avoidEscape": true
       }
     ],

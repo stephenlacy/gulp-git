@@ -17,7 +17,8 @@ module.exports = function(git) {
       });
       should.deepEqual(subPath, ['LICENSE', 'README.md', 'lib/tag.js', 'package.json']);
       should.deepEqual(diffInfo, [
-        { srcMode: '100644',
+        {
+          srcMode: '100644',
           dstMode: '100644',
           srcHash: '369b1d7',
           dstHash: '3834582',
@@ -25,7 +26,8 @@ module.exports = function(git) {
           srcPath: 'LICENSE',
           dstPath: 'LICENSE'
         },
-        { srcMode: '100644',
+        {
+          srcMode: '100644',
           dstMode: '100644',
           srcHash: '783f6c7',
           dstHash: 'd79e3b2',
@@ -33,7 +35,8 @@ module.exports = function(git) {
           srcPath: 'README.md',
           dstPath: 'README.md'
         },
-        { srcMode: '100644',
+        {
+          srcMode: '100644',
           dstMode: '100644',
           srcHash: '3fa85aa',
           dstHash: 'cdebb2e',
@@ -41,7 +44,8 @@ module.exports = function(git) {
           srcPath: 'lib/tag.js',
           dstPath: 'lib/tag.js'
         },
-        { srcMode: '100644',
+        {
+          srcMode: '100644',
           dstMode: '100644',
           srcHash: 'f128959',
           dstHash: '1ade7a9',
