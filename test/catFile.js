@@ -6,7 +6,6 @@ var mapStream = require('../lib/util/mapStream');
 module.exports = function(git) {
   it('package.json', function(done) {
     git.lsFiles({
-      log: false,
       args: ['--', 'package.json']
     })
     .pipe(git.catFile())
