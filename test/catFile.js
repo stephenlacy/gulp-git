@@ -16,4 +16,4 @@ module.exports = function(git) {
   });
 };
 
-module.exports(require('../'));
+// module.exports(require('../'));
