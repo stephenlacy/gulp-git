@@ -28,7 +28,7 @@
 #### 0.4.0 introduced Breaking Changes!
 Git actions which did not require a [Vinyl](https://github.com/wearefractal/vinyl) file were refactored.
 Please review the following docs for changes:
-##Example
+## Example
 
 ```javascript
 var gulp = require('gulp');
@@ -307,7 +307,7 @@ gulp.task('clean', function() {
 gulp.task('default',['add']);
 ```
 
-##API
+## API
 
 ### git.init(opt, cb)
 `git init`

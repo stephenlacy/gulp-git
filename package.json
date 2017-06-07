@@ -18,13 +18,14 @@
     "vinyl": "^2.0.2"
   },
   "devDependencies": {
+    "docdash": "^0.4.0",
     "eslint": "^3.19.0",
     "mocha": "^3.4.2",
     "rimraf": "^2.6.1",
     "should": "^11.2.1"
   },
   "scripts": {
-    "docs": "rimraf docs/* && jsdoc ./index.js ./lib --recurse --destination ./docs",
+    "docs": "rimraf docs/* && jsdoc ./index.js ./lib README.md --recurse --template node_modules/docdash --destination ./docs",
     "lint": "rimraf test/repo test/tmp && eslint ./index.js ./examples/ ./lib/ ./test/",
     "test": "mocha --reporter spec --timeout 6000 test/main.js && npm run lint"
   },
