@@ -23,8 +23,9 @@
 
 ## Usage
 ### Install
-    npm install gulp-git --save
-
+```bash
+npm install gulp-git --save
+```
 #### 0.4.0 introduced Breaking Changes!
 Git actions which did not require a [Vinyl](https://github.com/wearefractal/vinyl) file were refactored.
 Please review the following docs for changes:
@@ -347,19 +348,6 @@ git.clone('https://remote.git', {args: './sub/folder'}, function (err) {
 });
 ```
 
-### git.add(opt)
-`git add <files>`
-
-Adds files to repo
-
-`opt`: Object (optional) `{args: 'options', quiet: true, maxBuffer: 200 * 1024}`
-
-```js
-gulp.src('./*')
-  .pipe(git.add());
-});
-```
-
 ### git.commit(message, opt)
 `git commit -m <message> <files>`
 
@@ -372,25 +360,6 @@ Commits changes to repo
 ```js
 gulp.src('./*')
   .pipe(git.commit('commit message'));
-});
-```
-
-### git.addRemote(remote, url, opt, cb)
-`git remote add <remote> <repo https url>`
-
-Adds remote repo url
-
-`remote`: String, name of remote, default: `origin`
-
-`url`: String, url of remote
-
-`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true, maxBuffer: 200 * 1024}`
-
-`cb`: function, passed err if any
-
-```js
-git.addRemote('origin', 'git-repo-url', function (err) {
-  //if (err) ...
 });
 ```
 
