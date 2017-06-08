@@ -83,6 +83,11 @@
       "error",
       "safe"
     ],
-    "valid-jsdoc": "error"
+    "valid-jsdoc": [
+      "error",
+      {
+        "requireReturn": false
+      }
+    ]
   }
 }
