@@ -15,18 +15,19 @@
     "require-dir": "^0.3.2",
     "strip-bom-stream": "^3.0.0",
     "through2": "^2.0.3",
-    "vinyl": "^2.0.1"
+    "vinyl": "^2.0.2"
   },
   "devDependencies": {
-    "eslint": "^3.17.0",
-    "mocha": "^3.2.0",
+    "docdash": "^0.4.0",
+    "eslint": "^3.19.0",
+    "mocha": "^3.4.2",
     "rimraf": "^2.6.1",
-    "should": "^11.2.0"
+    "should": "^11.2.1"
   },
   "scripts": {
-    "docs": "rimraf docs/* && jsdoc ./index.js ./lib --recurse --destination ./docs",
-    "lint": "rimraf test/repo test/tmp && eslint ./index.js ./examples/ ./lib/ ./test/",
-    "test": "mocha --reporter spec --timeout 6000 test/main.js && npm run lint"
+    "docs": "rimraf docs/* && jsdoc ./index.js ./lib README.md --recurse --template node_modules/docdash --destination ./docs",
+    "pretest": "rimraf test/repo test/tmp && eslint ./index.js ./examples/ ./lib/ ./test/",
+    "test": "mocha --reporter spec --timeout 6000 test/main.js"
   },
   "engines": {
     "node": ">= 0.9.0"
