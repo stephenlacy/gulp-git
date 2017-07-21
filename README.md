@@ -352,7 +352,7 @@ git.clone('https://remote.git', {args: './sub/folder'}, function (err) {
 
 Adds files to repo
 
-`opt`: Object (optional) `{args: 'options', quiet: true, maxBuffer: 200 * 1024}`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true, maxBuffer: 200 * 1024}`
 
 ```js
 gulp.src('./*')
