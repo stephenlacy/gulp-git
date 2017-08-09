@@ -166,6 +166,12 @@ gulp.task('tagsec', function() {
   });
 });
 
+gulp.task('tagall', function() {
+  git.tag(function(err, tags) {
+    console.log(tags);
+  });
+});
+
 gulp.task('push-tag', function() {
   git.push('origin', 'v1.1.1', function (err) {
     if (err) {

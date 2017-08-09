@@ -33,4 +33,13 @@ module.exports = function(git) {
       });
     });
   });
+
+  it('should return all tags', function(done) {
+    git.tag(function(err, tags) {
+      should(tags).not.be.null();
+      should(tags[0]).not.be.null();
+      should(tags[0]).equal('0.5.1');
+      done();
+    });
+  });
 };
