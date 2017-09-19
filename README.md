@@ -365,7 +365,7 @@ gulp.src('./*')
 
 Commits changes to repo
 
-`message`: String, commit message
+`message`: String or array of strings, commit message
 
 `opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', maxBuffer: 200 * 1024, quiet: true, disableMessageRequirement: false, disableAppendPaths: false, multiline: false}`
 
@@ -490,7 +490,7 @@ Tags repo with release version, returns all tags when used without arguments
 
 `version`: String (optional), tag name
 
-`message`: String (optional), tag message
+`message`: String or array of strings (optional), tag message
 
 `opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true, maxBuffer: 200 * 1024}`
 
