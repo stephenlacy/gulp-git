@@ -490,7 +490,7 @@ Tags repo with release version, returns all tags when used without arguments
 
 `version`: String (optional), tag name
 
-`message`: String or array of strings (optional), tag message
+`message`: String (optional), tag message
 
 `opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true, maxBuffer: 200 * 1024}`
 
