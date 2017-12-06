@@ -303,6 +303,12 @@ gulp.task('clean', function() {
   });
 });
 
+// Get the current branch name
+
+git.revParse({args:'--abbrev-ref HEAD'}, function (err, branch) {
+  console.log('current git branch: ' + branch);
+});
+
 // Run gulp's default task
 gulp.task('default',['add']);
 ```
