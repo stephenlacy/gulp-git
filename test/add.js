@@ -2,12 +2,12 @@
 
 var fs = require('fs');
 var should = require('should');
-var gutil = require('gulp-util');
+var Vinyl = require('vinyl');
 
 module.exports = function(git, util) {
 
   it('should add files to the git repo', function(done) {
-    var fakeFile = new gutil.File(util.testFiles[0]);
+    var fakeFile = new Vinyl(util.testFiles[0]);
     var gitS = git.add();
     gitS.on('data', function(newFile) {
       should.exist(newFile);
@@ -23,7 +23,7 @@ module.exports = function(git, util) {
   it('should add multiple files to the git repo', function(done) {
     var fakeFiles = [];
     util.testFiles.forEach(function(name) {
-      fakeFiles.push( new gutil.File(name) );
+      fakeFiles.push( new Vinyl(name) );
     });
     var gitS = git.add();
     gitS.on('data', function(newFile) {
@@ -39,7 +39,7 @@ module.exports = function(git, util) {
   });
 
   it('should fire an end event', function(done) {
-    var fakeFile = new gutil.File(util.testFiles[0]);
+    var fakeFile = new Vinyl(util.testFiles[0]);
     var gitS = git.add();
 
     gitS.on('end', function() {

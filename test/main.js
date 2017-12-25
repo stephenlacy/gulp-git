@@ -1,16 +1,15 @@
 'use strict';
 
+// omit logging
+var mock = require('mock-require');
+mock('fancy-log', function() {});
+
 var path = require('path');
 var rimraf = require('rimraf');
-var gutil = require('gulp-util');
 var git = require('../');
 
 // just so this file is clean
 var util = require('./_util');
-
-// omit logging
-gutil.log = function() {};
-
 
 describe('gulp-git', function() {
 
