@@ -1,13 +1,13 @@
 'use strict';
 
 var fs = require('fs');
-var gutil = require('gulp-util');
+var Vinyl = require('vinyl');
 
 module.exports = function(git, util) {
 
   it('should rm a file', function(done) {
     var opt = {args: '-f', cwd: 'test/repo'};
-    var fakeFile = new gutil.File(util.testFiles[0]);
+    var fakeFile = new Vinyl(util.testFiles[0]);
     var gitS = git.rm(opt);
     gitS.once('data', function (newFile) {
       setTimeout(function() {
@@ -24,7 +24,7 @@ module.exports = function(git, util) {
   it('should rm multiple files', function(done) {
     var fakeFiles = [];
     util.testFiles.slice(1).forEach(function(file) {
-      fakeFiles.push(new gutil.File(file));
+      fakeFiles.push(new Vinyl(file));
     });
 
     var opt = {args: '-f', cwd: 'test/repo'};
