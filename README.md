@@ -69,6 +69,15 @@ gulp.task('commit', function(){
     .pipe(git.commit('initial commit'));
 });
 
+// Run git commit with a computed commit message
+gulp.task('commit', function(){
+  let newVersion;
+  function computeNewVersion() { newVersion = /* ... */ }
+  return gulp.src('./git-test/*')
+    .pipe(computeNewVersion())
+    .pipe(git.commit(() => `Bumps to version ${newVersion}`));
+});
+
 // Run git commit with options
 gulp.task('commit', function(){
   return gulp.src('./git-test/*')

@@ -197,4 +197,22 @@ module.exports = function(git, util) {
         gitS.end();
       });
   });
+
+  it('should allow functions for git message', function(done) {
+    var fakeFile = util.testFiles[0];
+    var opt = {cwd: './test/repo/'};
+    var msg = 'bogus commit message';
+    var gitS = git.commit(function() { return msg; }, opt);
+    msg = 'initial commit';
+    gitS.once('finish', function() {
+      setTimeout(function() {
+        fs.readFileSync(util.testCommit)
+          .toString('utf8')
+          .should.match(/initial commit/);
+        done();
+      }, 100);
+    });
+    gitS.write(fakeFile);
+    gitS.end();
+  });
 };
