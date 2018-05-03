@@ -25,6 +25,11 @@ gulp.task('commit', function() {
   .pipe(git.commit('initial commit'));
 });
 
+gulp.task('commitDelayed', function() {
+  gulp.src('./*')
+  .pipe(git.commit(function () { return 'commiting at exactly ' + new Date().toISOString(); }));
+});
+
 // Commit files with arguments
 gulp.task('commitopts', function() {
   gulp.src('./*')
