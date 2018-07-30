@@ -1,7 +1,7 @@
 {
   "name": "gulp-git",
   "description": "Git plugin for gulp (gulpjs.com)",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "homepage": "http://github.com/stevelacy/gulp-git",
   "repository": {
     "type": "git",
