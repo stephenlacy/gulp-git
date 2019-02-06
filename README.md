@@ -703,6 +703,23 @@ Remove untracked files from the working tree
 
 `cb`: function (optional), passed err if any
 
+### git.diff(branch, opt)
+`git diff master <options>`
+
+Diffs between git objects
+
+`branch`: String, branch name, commit name, or git tag
+
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true, maxBuffer: 200 * 1024}`
+
+```js
+gulp.task('diff', function(){
+  gulp.src('./*')
+    .pipe(git.diff('develop', {log: true}))
+    .pipe(gulp.dest('./diff.out'));
+});
+```
+
 #### You can view more examples in the [example folder.](https://github.com/stevelacy/gulp-git/tree/master/examples)
 
 <br/>
