@@ -20,7 +20,7 @@
     "vinyl": "^2.0.1"
   },
   "devDependencies": {
-    "eslint": "^3.17.0",
+    "eslint": "^6.6.0",
     "mocha": "^3.2.0",
     "mock-require": "^2.0.2",
     "rimraf": "^2.6.1",
