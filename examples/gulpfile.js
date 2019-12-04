@@ -14,7 +14,7 @@ gulp.task('init', function() {
 
 gulp.task('add', function() {
   gulp.src('./*')
-  .pipe(git.add());
+    .pipe(git.add());
 });
 
 
@@ -22,45 +22,45 @@ gulp.task('add', function() {
 
 gulp.task('commit', function() {
   gulp.src('./*', {buffer:false})
-  .pipe(git.commit('initial commit'));
+    .pipe(git.commit('initial commit'));
 });
 
 gulp.task('commitDelayed', function() {
   gulp.src('./*')
-  .pipe(git.commit(function () { return 'commiting at exactly ' + new Date().toISOString(); }));
+    .pipe(git.commit(function () { return 'commiting at exactly ' + new Date().toISOString(); }));
 });
 
 // Commit files with arguments
 gulp.task('commitopts', function() {
   gulp.src('./*')
-  .pipe(git.commit('initial commit', {args: '-v'}));
+    .pipe(git.commit('initial commit', {args: '-v'}));
 });
 
 // Commit files using raw arguments, without message checking
 gulp.task('commitraw', function() {
   gulp.src('./*')
-  .pipe(git.commit(undefined, {
-    args: '-m "initial commit"',
-    disableMessageRequirement: true
-  }));
+    .pipe(git.commit(undefined, {
+      args: '-m "initial commit"',
+      disableMessageRequirement: true
+    }));
 });
 
 // Commit files using raw arguments, without message checking
 gulp.task('commitmulti', function() {
   gulp.src('./*')
-  .pipe(git.commit(['initial commit', 'additional message']));
+    .pipe(git.commit(['initial commit', 'additional message']));
 });
 
 // Commit files using the multiline option
 gulp.task('commitmultiline', function() {
   gulp.src('./*')
-  .pipe(git.commit(['initial commit', 'additional message'], { mutiline: true }));
+    .pipe(git.commit(['initial commit', 'additional message'], { mutiline: true }));
 });
 
 // Commit files with multiline messages
 gulp.task('commitmultiline', function() {
   gulp.src('./*')
-  .pipe(git.commit('initial commit\nadditional message'));
+    .pipe(git.commit('initial commit\nadditional message'));
 });
 
 // Clone remote repo to current directory ($CWD/git-test)
@@ -188,7 +188,7 @@ gulp.task('push-tag', function() {
 
 gulp.task('rm', function() {
   gulp.src('./delete')
-  .pipe(git.rm({args: '-f'}));
+    .pipe(git.rm({args: '-f'}));
 });
 
 gulp.task('addSubmodule', function() {

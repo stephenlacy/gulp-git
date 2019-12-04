@@ -15,7 +15,7 @@ module.exports = function(git) {
 
       fs.readFileSync('test/repo/.gitmodules')
         .toString('utf8')
-        .should.match(new RegExp(url.replace(/[\/]/g, '\\$&')));
+        .should.match(new RegExp(url.replace(/[/]/g, '\\$&')));
       fs.stat('test/repo/testSubmodule/.git', function(err) {
         should.not.exist(err);
         done();

@@ -20,11 +20,11 @@
     "vinyl": "^2.0.1"
   },
   "devDependencies": {
-    "eslint": "^3.17.0",
-    "mocha": "^3.2.0",
+    "eslint": "^6.7.2",
+    "mocha": "^6.2.2",
     "mock-require": "^2.0.2",
     "rimraf": "^2.6.1",
-    "should": "^11.2.0"
+    "should": "^13.2.3"
   },
   "scripts": {
     "docs": "rimraf docs/* && jsdoc ./index.js ./lib --recurse --destination ./docs",

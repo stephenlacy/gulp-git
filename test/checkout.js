@@ -9,7 +9,7 @@ module.exports = function(git) {
     git.checkout('testBranch', opt, function() {
       fs.readFileSync('test/repo/.git/HEAD')
         .toString('utf8')
-        .should.match(/ref\: refs\/heads\/testBranch/);
+        .should.match(/ref: refs\/heads\/testBranch/);
 
       done();
     });
