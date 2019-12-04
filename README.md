@@ -539,6 +539,21 @@ git.branch('development', function (err) {
 });
 ```
 
+### git.showBranch(opt, cb)
+`git show-branch <opt>`
+
+Show branches and their commits
+
+`opt`: Object (optional) `{args: 'options'}`
+
+`cb`: function, passed err if any
+
+```js
+git.showBranch({'args': '--list -a'}, function (err) {
+  //if (err) ...
+});
+```
+
 ### git.checkout(branch, opt, cb)
 `git checkout <new branch name>`
 

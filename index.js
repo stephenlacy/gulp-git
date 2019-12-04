@@ -23,6 +23,7 @@
  * @property {function} reset           {@link module:gulp-git/lib/reset}
  * @property {function} revParse        {@link module:gulp-git/lib/revParse}
  * @property {function} rm              {@link module:gulp-git/lib/rm}
+ * @property {function} showBranch      {@link module:gulp-git/lib/showBranch}
  * @property {function} stash           {@link module:gulp-git/lib/stash}
  * @property {function} status          {@link module:gulp-git/lib/status}
  * @property {function} tag             {@link module:gulp-git/lib/tag}
