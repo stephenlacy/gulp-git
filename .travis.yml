@@ -1,7 +1,7 @@
 sudo: false
 language: node_js
 node_js:
-  - "lts"
+  - "lts/*"
 before_install:
   - git config --global user.email "you@example.com"
   - git config --global user.name "Your Name"
