@@ -367,7 +367,7 @@ git.clone('https://remote.git', {args: './sub/folder'}, function (err) {
 
 Adds files to repo
 
-`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true, maxBuffer: 200 * 1024}`
+`opt`: Object (optional) `{args: 'options', cwd: '/cwd/path', quiet: true, maxBuffer: 200 * 1024, maxFiles: Infinity}`
 
 ```js
 gulp.src('./*')
@@ -755,6 +755,21 @@ gulp.task('pull', function(){
   git.pull('origin', 'master', {args: '--rebase', maxBuffer: Infinity}, function (err) {
     if (err) throw err;
   });
+});
+```
+
+#### The command line is too long.
+
+Reported [here](https://github.com/stevelacy/gulp-git/issues/201).
+
+If the `git add` command exceeds [8191 characters on Windows](https://docs.microsoft.com/en-us/troubleshoot/windows-client/shell-experience/command-line-string-limitation#more-information) you will get this error.
+
+The `add` function has an additional option: `maxFiles`.
+
+```js
+gulp.task('add', function(){
+  return gulp.src('./git-test/*')
+    .pipe(git.add({maxFiles: 8}));
 });
 ```
 

@@ -50,4 +50,22 @@ module.exports = function(git, util) {
     gitS.end();
   });
 
+  it('should add files in batches', function(done) {
+    var fakeFiles = [];
+    util.testFiles.forEach(function(name) {
+      fakeFiles.push( new Vinyl(name) );
+    });
+    var gitS = git.add({ maxFiles: 2 });
+    gitS.on('data', function(newFile) {
+      should.exist(newFile);
+      fs.stat('test/repo/.git/objects/', function(err) {
+        should.not.exist(err);
+      });
+    });
+    fakeFiles.forEach(function(file) {
+      gitS.write(file);
+    });
+    gitS.end(done);
+  });
+
 };
